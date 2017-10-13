@@ -84,7 +84,7 @@ a:hover{
     margin: 4px 2px;
 }
 .profile-education input[type=text],.profile-location input[type=text]{
-    width:300px;
+    width:350px;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
@@ -93,5 +93,9 @@ a:hover{
     box-sizing: border-box;   
     margin-left:-100px;     
 }
-
+body{
+    margin:0;
+    padding:0;
+    border:0;
+}
 

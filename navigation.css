@@ -1,22 +1,22 @@
 header h1{
     position: absolute;
     color:#FF3E00;
-    top:5px;
+    top:0px;
     left:50px;
-    font-size:48px;
+    font-size:60px;
     
 }
 header{
     display: block;
     font-family: 'Quicksand', 'sans-serif';
 }
-#header-button{
+#navbar ul{
     position: absolute;
-    top:40px;
-    right:50px;
-    font-family: 'Quicksand', 'sans-serif';
+    top:30px;
+    right:30px;
 }
-a{
+#navbar li{
+    font-size:24px;
     background-color: black;
     border: none;
     color: white;
@@ -24,14 +24,14 @@ a{
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
     -webkit-transition-duration: 0.4s;
     transition-duration: 0.4s;
     font-family: 'Quicksand', 'sans-serif';
 }
-a:hover{
+#navbar li:hover{
+    font-size:24px;
     background-color: white;
     border: 1px solid black;
     color: black;
@@ -39,36 +39,9 @@ a:hover{
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
     font-family: 'Quicksand', 'sans-serif';
-}
-.login-box{
-    font-family:'Quicksand','sans-serif';
-    position: absolute;
-    top:30%;
-    left:40%;
-
-}
-.login-box *{
-    margin-bottom:20px;
-}
-.login-box h2{
-    font-size: 36px;
-    margin-left: 35px; 
-}
-input[type=text], input[type = password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-#login-box-button{
-    margin-left:35px;
 }
 body{
     margin:0;
