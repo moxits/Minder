@@ -5,6 +5,7 @@
         <title>Profile</title>
         <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
         <link rel = "stylesheet" href = "profile.css"> 
+        <script src = 'profile.js'></script>
 </head>
 <body>
     <header>
@@ -22,7 +23,17 @@
         <textarea rows = 4 cols = 50 placeholder = 'Please enter a short description about yourself.'></textarea>
     </div>
     <div class = 'profile-tags'>
-        <input type = 'text' name = 'tags' placeholder = 'Enter a skill or quality'>
+        <input id='tag-textbox' type = 'text' name = 'tags' placeholder = 'Enter a skill or quality tag'>
+        <button onclick="addTags()">Add Tag</button>
+        <br>
+        <ul id = 'tag-list'>
+        </ul>
+    </div>
+    <div class = "profile-education">
+        <input type = 'text' name = 'education' placeholder = 'Which university do you attend?'><br>
+    </div>
+    <div class = "profile-location">
+        <input type = 'text' name = 'location' placeholder = 'Which city do you live in?'><br>
     </div>
     </div>
 </body>
