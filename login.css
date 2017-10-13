@@ -17,9 +17,9 @@ header{
     font-family: 'Quicksand', 'sans-serif';
 }
 a{
-    background-color: white;
+    background-color: black;
     border: none;
-    color: black;
+    color: white;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
@@ -32,9 +32,9 @@ a{
     font-family: 'Quicksand', 'sans-serif';
 }
 a:hover{
-    background-color: black;
+    background-color: white;
     border: 1px solid black;
-    color: white;
+    color: black;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
@@ -44,33 +44,19 @@ a:hover{
     cursor: pointer;
     font-family: 'Quicksand', 'sans-serif';
 }
-.join-box{
+.login-box{
     font-family:'Quicksand','sans-serif';
     position: absolute;
     top:30%;
     left:40%;
+
 }
-.join-box h2{
-    font-size:48px;
-    margin-left:10px;
-    color:white;
-}
-.join-box *{
+.login-box *{
     margin-bottom:20px;
 }
-#join-box-radio{
-    font-size:18px;
-    text-align: center;
-    color:white;
-}
-#join-box-name{
-    margin-bottom:-15px;
-}
-#join-box-zip{
-    margin-bottom:-20px;
-}
-#join-box-button{
-    margin-left:80px;
+.login-box h2{
+    font-size: 48px;
+    margin-left: 35px; 
 }
 input[type=text], input[type = password] {
     width: 100%;
@@ -81,10 +67,11 @@ input[type=text], input[type = password] {
     border-radius: 4px;
     box-sizing: border-box;
 }
+#login-box-button{
+    margin-left:35px;
+}
 body{
     margin:0;
     padding:0;
     border:0;
-    background: url('background.jpg') no-repeat center center fixed;
-    background-size: cover;
 }
