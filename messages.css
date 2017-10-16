@@ -43,16 +43,16 @@ header{
     cursor: pointer;
     font-family: 'Quicksand', 'sans-serif';
 }
-#matches{
-    font-family: 'Quicksand', 'sans-serif';
-    position: absolute;
-    left:3%;
+.side-bar{
+    position:fixed;
     top:20%;
+    left:0%;
+    border:3px solid black;
 }
-#search input[type=text]{
+.side-bar input[type=text]{
     display:block;
     margin:0 0 0 auto;
-    width:200px;
+    width:90%;
     box-sizing:border-box;
     border: 2px solid #ccc;
     border-radius:4px;
@@ -62,23 +62,7 @@ header{
     padding:12px 20px 12px 40px;
     -webkit-transition: width .4s ease-in-out;
     transition:  width .4s ease-in-out;
-    margin-left:-1px;
-}
-#search input[type=text]:focus{
-    width:400px;
-}
-
-#matches h3{
-    font-size:36px;
-}
-#tag-matches-box{
-    box-sizing: border-box;
-    border: 2px solid black;
-    width:100%;
-    height:300px;
-}
-body{
-    margin:0;
-    padding:0;
-    border:0;
+    margin-right:50px;
+    margin-left:20px;
+    margin-bottom:600px;
 }
