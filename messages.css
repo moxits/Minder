@@ -78,5 +78,5 @@ header{
     left:28%;
     top:20%;
     height:400px;
-
+    overflow: scroll;
 }
