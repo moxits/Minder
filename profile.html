@@ -16,14 +16,18 @@
     </header>
     <div class = 'profile'>
     <div class = 'profile-picture'>
-            <img src = "profile-placeholder.png" width = 100px height = 100px>
             <h5>Add A Profile Picture</h5>
+            <video autoplay="true" id ="videoElement">
+            </video>
+            <img src = "">
+            <canvas id="profile-image" style="display:none;" width="150" height="150"></canvas>
+            <button onclick="takePic()">Take Picture</button>
     </div>
     <div class =  "profile-description">
         <textarea rows = 4 cols = 50 placeholder = 'Please enter a short description about yourself.'></textarea>
     </div>
     <div class = 'profile-tags'>
-        <input id='tag-textbox' type = 'text' name = 'tags' placeholder = 'Enter a skill or quality tag'>
+        <input id='tag-textbox' type='text' name='tags' placeholder='Enter a skill or quality tag'>
         <button onclick="addTags()">Add Tag</button>
         <br>
         <ul id = 'tag-list'>

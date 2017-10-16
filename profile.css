@@ -98,4 +98,13 @@ body{
     padding:0;
     border:0;
 }
-
+#videoElement{
+    width:150px;
+    height:150px;
+    border:3px solid black;
+}
+#profile-image{
+    width:150px;
+    height:150px;
+    border:3px solid black;
+}

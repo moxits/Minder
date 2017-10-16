@@ -66,3 +66,17 @@ header{
     margin-left:20px;
     margin-bottom:600px;
 }
+#message-box{
+    position:absolute;
+    bottom:10px;
+    left:31%;
+}
+.message-container{
+    position: absolute;
+    border: 3px solid black;
+    width:1064px;
+    left:28%;
+    top:20%;
+    height:400px;
+
+}
