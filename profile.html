@@ -3,6 +3,7 @@
 <head>
         <meta charset = "UTF-8">
         <title>Profile</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
         <link rel = "stylesheet" href = "profile.css"> 
         <script src = 'profile.js'></script>
@@ -36,10 +37,11 @@
     <div class = "profile-education">
         <input type = 'text' name = 'education' placeholder = 'Which university do you attend?'><br>
     </div>
-    <div class = "profile-location">
-        <input type = 'text' name = 'location' placeholder = 'Which city do you live in?'><br>
+    <div id="new-password">
+        <input type='password' name='password1' placeholder='Enter a password'><br>
+        <input type='password' name='password2' placeholder='Reenter the password'><br>
     </div>
-        <a id = 'continue-button' href = "navigation.html">Continue</a>
+        <button id = 'continue-button'>Continue</button>
     </div>
 </body>
 </html>

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Minder</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel = "stylesheet" href = "homepage.css">
     <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
 </head>
@@ -21,13 +22,15 @@
                 <input type = "radio" name = "type" value = "Mentee">I am looking for a Mentor<br>
             </div>
             <div id = "join-box-name">
-            <input type = "text" name = "First Name" placeholder="First Name">
-            <input type = "text" name = "Last Name" placeholder = "Last Name">
+            <input type = "text" name = "FirstName" placeholder="First Name">
+            <input type = "text" name = "LastName" placeholder = "Last Name">
+            <input type="email" name="Email" placeholder="Email">
             </div>
             <br>
             <input type = "text" name = "Location" placeholder = "Zip Code" id = "join-box-zip">
         </form>
-        <a href = "profile.html" id = "join-box-button">Create Your Account!</a> 
+        <button id = "join-box-button">Create Your Account!</button> 
     </div>
+    <script src='newprofile.js'></script>
 </body>
 </html>

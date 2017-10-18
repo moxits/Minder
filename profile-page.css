@@ -52,6 +52,7 @@ header{
     width:200px; 
     height:200px;
     border:3px solid black;
+    margin-bottom:30px;
 }
 #map{
     position:absolute;
@@ -60,4 +61,22 @@ header{
     width:500px; 
     height:200px;
     border:1px solid black;
+    margin-bottom: 30px;
+}
+.profile-bio{
+    position:absolute;
+    top:50%;
+    left:2%;
+    width:500px;
+    height:300px;
+    border:3px solid black;
+
+}
+.profile-tags{
+    position:absolute;
+    top:20%;
+    right:10%;
+    width:300px;
+    height:500px;
+    border:3px solid black;
 }
