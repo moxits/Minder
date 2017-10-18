@@ -14,9 +14,22 @@ $(document).ready(function(){
            dataType : "json",
        })
        .done(function( json ) {
-           var 
+           var userID = json._id;
      });
-    window.open('profile.html');
+    window.open('profile.html','_self');
     });
-    $()
+    $('#continue-button').click(function(){
+        newUser.bio = $('#bio').val();
+        newUser.tags = [];
+        $('ul li').each(function(){
+            newUser.tags.push($(this).text());
+        })
+        newUser.education=$('input[name=education]').val();
+        $.ajax({
+            url: "http://thiman.me:1337/moxit/user/"
+        }
+
+        )
+
+    })
 });
