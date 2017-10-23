@@ -8,7 +8,7 @@ var newUser;
         zipCode:$('input[name=Location]').val(),
     };
     $.ajax({
-           url: "localhost:3000/users",
+           url: "http://localhost:3000/users",
            data: newUser,
            type: "POST",
            dataType : "json",
@@ -18,6 +18,6 @@ var newUser;
            return newUser;
      });
     window.open('profile.html','_self');
-    });
+});
 
 
