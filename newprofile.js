@@ -1,6 +1,6 @@
-$(document).ready(function(){
+var newUser;
     $('#join-box-button').click(function() {
-    var newUser = {
+    newUser = {
         type:$('input[name=type]:checked').val(),
         firstName:$('input[name=FirstName]').val(),
         lastName:$('input[name=LastName]').val(),
@@ -8,28 +8,16 @@ $(document).ready(function(){
         zipCode:$('input[name=Location]').val(),
     };
     $.ajax({
-           url: "http://thiman.me:1337/moxit/user",
+           url: "localhost:3000/users",
            data: newUser,
            type: "POST",
            dataType : "json",
        })
        .done(function( json ) {
            var userID = json._id;
+           return newUser;
      });
     window.open('profile.html','_self');
     });
-    $('#continue-button').click(function(){
-        newUser.bio = $('#bio').val();
-        newUser.tags = [];
-        $('ul li').each(function(){
-            newUser.tags.push($(this).text());
-        })
-        newUser.education=$('input[name=education]').val();
-        $.ajax({
-            url: "http://thiman.me:1337/moxit/user/"
-        }
 
-        )
 
-    })
-});
