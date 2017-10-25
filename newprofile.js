@@ -11,7 +11,6 @@ var newUser;
            url: "http://localhost:3000/users",
            data: newUser,
            type: "POST",
-           dataType : "json",
        })
        .done(function( json ) {
            var userID = json._id;
