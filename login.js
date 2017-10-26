@@ -1,6 +1,6 @@
 $('#login-box-button').click(function(){
-    var userName = $('input[name=username]');
-    var password = $('input[name=password]');
+    var userName = $('input[name=username]').val();
+    var password = $('input[name=password]').val();
     $.ajax({
         url:"http://localhost:3000/users",
         type:"GET"
@@ -8,10 +8,12 @@ $('#login-box-button').click(function(){
     .done(function(json){
         var userList = json;
         for (var i=0;i<userList.length;i++){
-            console.log('works');
-            if (userList[i].email==userName&&userlist[i].password==password){
-                alert("SUCCESS");
+                if(userList[i].email==userName&&userList[i].password==password){
+                    console.log('Matched');
+                }
+                else{
+                    alert("Incorrect Username or Password");
+                }
             }
-        }
-    })
-});
+        })
+    });
