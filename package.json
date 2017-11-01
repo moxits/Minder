@@ -7,26 +7,13 @@
   },
   "dependencies": {
     "body-parser": "~1.18.2",
+    "client-sessions": "^0.8.0",
     "cookie-parser": "~1.4.3",
-    "cors": "^2.8.4",
     "debug": "~2.6.9",
-    "ejs": "~2.5.7",
-    "express": "^4.15.5",
+    "ejs": "^2.5.7",
+    "express": "~4.15.5",
     "mongoose": "^4.12.4",
     "morgan": "~1.9.0",
     "serve-favicon": "~2.4.5"
-  },
-  "description": "",
-  "main": "app.js",
-  "devDependencies": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/moxits/Minder.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/moxits/Minder/issues"
-  },
-  "homepage": "https://github.com/moxits/Minder#readme"
+  }
 }
