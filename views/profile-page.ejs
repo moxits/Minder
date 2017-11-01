@@ -4,8 +4,8 @@
         <meta charset="UTF-8">
         <title>Name</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="/public/javascripts/profile-page.js"></script>
-        <link rel ='stylesheet' href='/public/stylesheets/profile-page.css'>
+        
+        <link rel ='stylesheet' href='/stylesheets/profile-page.css'>
         <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
     </head>
     <body>
@@ -13,27 +13,33 @@
             <h1>Minder</h1>
             <div id = 'navbar'>
             <ul>
-                <li>Notifications  </li>
+                <li><a href = "http://localhost:3000/users/navigation">Find Friends</a></li>
                 <li>Messages  </li>
-                <li>Settings  </li>
-                <li>Logout</li>
+                <li><a href = "http://localhost:3000/users/logout">Logout</a></li>
             </ul>
             </div>
         </header>
         <div class='profile-picture'>
-        <h3>First Name Last Name</h3>
+        <h3><%=user.firstName %><%=user.lastName%></h3>
         </div>
         <div class='profile-bio'>
             <h3>Bio</h3>
+            <p><%=user.bio%></p>
         </div>
         <div class = 'profile-tags'>
-            <h3>profile tags</h3>
+            <h3>Tags</h3>
+            <ul>
+            <% for(var i=0; i<user.tags.length; i++) {%>
+                <li><%= user.tags[i] %></li>
+            <% } %>
+            </ul>                                     
+                        
         </div>
         <div id="map"></div>
         <!--<script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAiWRcJLLw5vP500IIteJGdxm16rHhDu0E&callback=initMap">
         </script>-->
-        
+        <script src="/javascripts/profile-page.js"></script>
     </body>
  
 </html>

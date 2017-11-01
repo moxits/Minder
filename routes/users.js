@@ -15,8 +15,13 @@ router.post('/',function(req,res){
     res.json(user);
   });
 });
-
-router.post('/login', function(req, res, next) {
+router.get("/login",function(req,res){
+  res.render('login');
+});
+router.get("/profile",function(req,res){
+  res.render("profile");
+});
+router.post('/loginUser', function(req, res, next) {
   userModel.findOne( { email: req.body.email }, function(err, user){
     //Check if user exists
     if(user){
@@ -79,7 +84,24 @@ function require_login(req, res, next) {
   }
 };
 router.get('/profile-page', require_login, function(req, res) {
-  res.render('profile-page');
+  res.render('profile-page',req.user);
+});
+router.post('/addFriend/:userId',require_login,function(req,res){
+  req.user.friends.push(req.params.userId);
+  res.send(req.user.friends);
+});
+router.delete('/deleteFriend/:userId',require_login,function(req,res){
+  var i = req.user.friends.indexOf(req.params.userId);
+  if (i != -1){
+    req.user.friends.splice(i,1);
+  }
+  res.send(req.user.friends);
+});
+router.get('/navigation',require_login,function(req,res){
+  userModel.find({_id:{$nin: [(req.user.id)]}},function (err, users) {
+    if (err) return console.error(err);
+    res.render('navigation',{users:users});
+  })
 });
 router.get('/logout', function(req, res) {
   req.session.reset();

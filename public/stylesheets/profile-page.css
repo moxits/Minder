@@ -16,7 +16,7 @@ header{
     top:30px;
     right:30px;
 }
-#navbar li{
+#navbar li,#navbar button{
     font-size:24px;
     background-color: black;
     border: none;
@@ -31,7 +31,7 @@ header{
     transition-duration: 0.4s;
     font-family: 'Quicksand', 'sans-serif';
 }
-#navbar li:hover{
+#navbar li:hover,#navbar button:hover{
     font-size:24px;
     background-color: white;
     border: 1px solid black;

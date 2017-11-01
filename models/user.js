@@ -9,8 +9,8 @@ var userSchema = mongoose.Schema({
     bio: String,
     tags: Array,
     school:String,
+    friends: Array,
     password:String,
-  
-  });
+});
 
   module.exports = mongoose.model('User', userSchema);

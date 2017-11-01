@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "UTF-8">
+        <title>Home</title>
+        <link rel = 'stylesheet' href = '/stylesheets/navigation.css'>
+        <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <h1>Minder</h1>
+            <div id = 'navbar'>
+            <ul>
+                <li>Messages  </li>
+                <li><a href = "http://localhost:3000/users/profile-page">Profile</a></li>
+                <li><a href = "http://localhost:3000/users/logout">Logout</a></li>
+            </ul>
+            </div>
+        </header>
+        <div id = 'matches'>
+        <div id = 'search'>
+                <form>
+                    <input type="text" name="search" placeholder="Search for profiles">
+                </form>
+        </div>
+        <div id = 'tag-matches'>
+            <h3>Users With Similar Tags</h3>
+        </div>
+        <div id = 'tag-matches-box'>
+                <% for(var i=0; i<users.length; i++) {%>
+                        <div class = "users">
+                            <h5><%= users[i].firstName  %> <%= users[i].lastName %>, <%= users[i].school %></h5>   
+                            <h6>I am a <%= users[i].type %></h6>
+                            <h6><%= users[i].location %></h6>
+                            <button onclick="addFriend">Add Friend</button></a>
+                        </div>
+                <% } %>
+        </div>
+        </div>
+        <script src = "/javascripts/navigation.js"></script>
+    </body>
+</html>

@@ -31,7 +31,7 @@ $('#continue-button').click(function(){
             type:"PATCH",
         })
         .done(function(json){
-            window.open('login.html','_self')
+            window.location.replace("http://localhost:3000/users/login");
         })
     })
 });

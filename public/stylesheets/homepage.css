@@ -86,6 +86,6 @@ body{
     margin:0;
     padding:0;
     border:0;
-    background: url('/public/images/background.jpg') no-repeat center center fixed;
+    background: url('/images/background.jpg') no-repeat center center fixed;
     background-size: cover;
 }
