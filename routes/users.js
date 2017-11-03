@@ -87,20 +87,46 @@ router.get('/profile-page', require_login, function(req, res) {
   res.render('profile-page',req.user);
 });
 router.post('/addFriend/:userId',require_login,function(req,res){
-  req.user.friends.push(req.params.userId);
-  res.send(req.user.friends);
+  var user = req.user;
+  userModel.update({'_id':user._id},{$push:{"friends":req.params.userId}},function(err,user){
+    if (err) return console.error(err);
+   });
+   res.send(user);
 });
 router.delete('/deleteFriend/:userId',require_login,function(req,res){
-  var i = req.user.friends.indexOf(req.params.userId);
-  if (i != -1){
-    req.user.friends.splice(i,1);
-  }
-  res.send(req.user.friends);
+  var user = req.user;
+  userModel.update({'_id':user._id},{$pull:{
+    "friends": req.params.userId}},function(err,user){
+      if (err) return console.error(err);             
+    });
+  res.send(user);
 });
 router.get('/navigation',require_login,function(req,res){
+  user = req.user;
+  var not_friends =[];
+  var local_users = [];
+  var tag_matches = [];
   userModel.find({_id:{$nin: [(req.user.id)]}},function (err, users) {
     if (err) return console.error(err);
-    res.render('navigation',{users:users});
+    for (var i = 0;i<users.length;i++){
+      if (user.friends.indexOf(users[i]._id) === -1){
+        not_friends.push(users[i]);
+      }
+    }
+    for (var x=0;x<not_friends.length;x++){
+      var difference = (parseInt(user.location) - parseInt(not_friends[x].location));
+      if ((difference <= 5) && (difference >=-5 )){
+        local_users.push(not_friends[x]);
+      }
+    }
+    userModel.find({_id:{$nin: [(req.user.id)]},tags:{$in:user.tags}},function(err,matchedusers){
+      for (var y = 0;y<matchedusers.length;y++){
+        if (!(matchedusers[y] in not_friends)){
+          tag_matches.push(matchedusers[y]);
+        }
+      }
+      res.render("navigation",{allusers:not_friends,localusers:local_users,tagmatches:tag_matches});
+    })
   })
 });
 router.get('/logout', function(req, res) {

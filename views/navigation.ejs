@@ -3,6 +3,7 @@
     <head>
         <meta charset = "UTF-8">
         <title>Home</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link rel = 'stylesheet' href = '/stylesheets/navigation.css'>
         <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
     </head>
@@ -17,24 +18,61 @@
             </ul>
             </div>
         </header>
-        <div id = 'matches'>
+        
         <div id = 'search'>
                 <form>
                     <input type="text" name="search" placeholder="Search for profiles">
                 </form>
         </div>
-        <div id = 'tag-matches'>
-            <h3>Users With Similar Tags</h3>
-        </div>
-        <div id = 'tag-matches-box'>
-                <% for(var i=0; i<users.length; i++) {%>
+        <div id='matches'>
+        <!--<div id = 'all-users'>
+            <h3>All Users</h3>
+        </div>-->
+         
+        <div id = 'all-users-box'>
+                <pre><h3>All Users</h3></pre>
+                <div id='all-users'>
+                <% for(var i=0; i<allusers.length; i++) {%>
                         <div class = "users">
-                            <h5><%= users[i].firstName  %> <%= users[i].lastName %>, <%= users[i].school %></h5>   
-                            <h6>I am a <%= users[i].type %></h6>
-                            <h6><%= users[i].location %></h6>
-                            <button onclick="addFriend">Add Friend</button></a>
+                            <h5><%= allusers[i].firstName  %> <%= allusers[i].lastName %>, <%= allusers[i].school %></h5>   
+                            <h6>I am a <%= allusers[i].type %></h6>
+                            <h6><%= allusers[i].location %></h6>
+                            <button class="addFriend" value =<%= allusers[i].id %>>Add Friend</button>
                         </div>
                 <% } %>
+                </div>
+        </div>
+        <!--<div id='local-matches'>
+            <h3>Users near you</h3>
+        </div>-->
+        <div id='local-matches-box'>
+            <pre><h3>Users Near You</h3></pre>
+            <div id='local-matches'>
+            <% for(var i=0; i<localusers.length; i++) {%>
+                <div class = "users">
+                    <h5><%= localusers[i].firstName  %> <%= localusers[i].lastName %>, <%= localusers[i].school %></h5>   
+                    <h6>I am a <%= localusers[i].type %></h6>
+                    <h6><%= localusers[i].location %></h6>
+                    <button class="addFriend" value =<%= localusers[i].id %>>Add Friend</button>
+                </div>
+            <% } %>
+        </div>
+        </div>
+        <!--<div id='tag-matches'>
+            <h3>Users with Similar Tags</h3>
+        </div>-->
+        <div id='tag-matches-box'>
+            <pre><h3>Users with Similar Tags</h3></pre>
+            <div id='tag-matches'>
+            <% for(var i=0; i<tagmatches.length; i++) {%>
+                <div class = "users">
+                    <h5><%= tagmatches[i].firstName  %> <%= tagmatches[i].lastName %>, <%= tagmatches[i].school %></h5>   
+                    <h6>I am a <%= tagmatches[i].type %></h6>
+                    <h6><%= tagmatches[i].location %></h6>
+                    <button class="addFriend" value =<%= tagmatches[i].id %>>Add Friend</button>
+                </div>
+            <% } %>
+            </div>
         </div>
         </div>
         <script src = "/javascripts/navigation.js"></script>
