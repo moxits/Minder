@@ -93,10 +93,19 @@ header{
 
 .users{
     border:3px solid black;
+
 }
 .users *{
     margin:0;
 }
+a{ 
+    color:white;
+}
+a:visited{
+    text-decoration: none;
+    color:white;
+}
+
 
 }
 body{

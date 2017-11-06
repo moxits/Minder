@@ -86,6 +86,9 @@ function require_login(req, res, next) {
 router.get('/profile-page', require_login, function(req, res) {
   res.render('profile-page',req.user);
 });
+router.get('/messages',require_login,function(req,res){
+  res.render('messages');
+})
 router.post('/addFriend/:userId',require_login,function(req,res){
   var user = req.user;
   userModel.update({'_id':user._id},{$push:{"friends":req.params.userId}},function(err,user){
@@ -117,7 +120,7 @@ router.get('/navigation',require_login,function(req,res){
       var difference = (parseInt(user.location) - parseInt(not_friends[x].location));
       if ((difference <= 5) && (difference >=-5 )){
         local_users.push(not_friends[x]);
-      }
+      } 
     }
     userModel.find({_id:{$nin: [(req.user.id)]},tags:{$in:user.tags}},function(err,matchedusers){
       for (var y = 0;y<matchedusers.length;y++){
