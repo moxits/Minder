@@ -1,4 +1,4 @@
-/*var APIKEY = "AIzaSyAiWRcJLLw5vP500IIteJGdxm16rHhDu0E";
+var APIKEY = "AIzaSyAiWRcJLLw5vP500IIteJGdxm16rHhDu0E";
 
 function initMap() {
   var uluru = {lat: -25.363, lng: 131.044};
@@ -10,5 +10,5 @@ function initMap() {
     position: uluru,
     map: map
   });
-}*/
+}
 

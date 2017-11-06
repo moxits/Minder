@@ -84,11 +84,23 @@ function require_login(req, res, next) {
   }
 };
 router.get('/profile-page', require_login, function(req, res) {
-  res.render('profile-page',req.user);
+  var user=req.user;
+  var friendslist = []; 
+  userModel.find({_id:{$in:user.friends}},function(err,foundfriends){
+    if (err) return console.error(err);
+    friendslist = foundfriends;
+    res.render('profile-page',{user:user,friends:friendslist});
+  })
 });
+
 router.get('/messages',require_login,function(req,res){
-  res.render('messages');
-})
+  var friendslist = []; 
+  userModel.find({_id:{$in:req.user.friends}},function(err,foundfriends){
+    if (err) return console.error(err);
+    friendslist = foundfriends;
+    res.render('messages',{friends:friendslist});
+  })
+});
 router.post('/addFriend/:userId',require_login,function(req,res){
   var user = req.user;
   userModel.update({'_id':user._id},{$push:{"friends":req.params.userId}},function(err,user){
