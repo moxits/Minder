@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var cors = require('cors');
 var router = express.Router();
 var userModel = require('../models/User');
+var messageModel = require('../models/Message')
 
 
 router.post('/',function(req,res){
@@ -100,6 +101,25 @@ router.get('/messages',require_login,function(req,res){
     friendslist = foundfriends;
     res.render('messages',{friends:friendslist});
   })
+});
+router.post('/loadmessage',require_login,function(req,res){
+  var user = req.user;
+  var userlist = [user._id,req.body.id];
+  messageModel.find({from:{$in:userlist},to:{$in:userlist}},function(err,foundmsgs){
+    if (err) return console.error(err);
+    res.send(foundmsgs);
+  })
+}); 
+router.post('/sendmessage',require_login,function(req,res){
+  var newMsg = new messageModel(req.body);
+  newMsg.from = req.user._id;
+  newMsg.save(function(err,msg){
+    if (err){
+      console.error(err);
+      return res.send('ERROR');
+    }
+    res.json(msg);
+  });
 });
 router.post('/addFriend/:userId',require_login,function(req,res){
   var user = req.user;

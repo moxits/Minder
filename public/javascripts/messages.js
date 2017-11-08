@@ -85,19 +85,45 @@ function register_popup(id, name)
     element = element + '<div class="popup-head-right"><a href="javascript:close_popup(\''+ id +'\');">&#10005;</a></div>';
     element = element + '<div style="clear: both"></div></div><div class="popup-messages"><div class = "message-box"></div><input type="text" class="chat-input"/></div></div>';
     
-    document.getElementsByTagName("body")[0].innerHTML = document.getElementsByTagName("body")[0].innerHTML + element;  
-    var popup = document.querySelector('.chat-input');
+    //document.getElementsByTagName("body")[0].innerHTML = document.getElementsByTagName("body")[0].innerHTML + element;  
+    document.getElementById("msg-container").innerHTML = document.getElementById("msg-container").innerHTML + element; 
+    $.ajax({
+        url:"http://localhost:3000/users/loadmessage",
+        data: id,
+        type:"POST"
+    })
+    .done(function(json){
+        console.log(id);
+        console.log(json);
+        for (i=0;i<json.length;i++){
+            var message = document.createElement("p");
+            message.innerHTML = json[i].text;
+            $('.message-box').append(message);
+        }
+    })
 
-    
-    popup.addEventListener("keypress",function(event){
-        var input = $(this).find('.chat-input');
-        var container = $(this);
+
+
+    $("#msg-container").on("keypress",".popup-messages",function(event){
         key = event.keyCode;
         if (key===13){
+            var newMsg = {};
+            newMsg.to = ($(this).parent().attr('id'));
             var message = document.createElement("p")
-            message.innerHTML = input.value;
-            container.find('.message-box').appendChild(message);     
-            input.value="";
+            newMsg.text = message.innerHTML = $('.chat-input',this).val();
+            newMsg.time = new Date($.now());
+            if (newMsg.text!=""){
+                $.ajax({
+                    url:"http://localhost:3000/users/sendmessage",
+                    data:newMsg,
+                    type:"POST",
+                })
+                $('.message-box',this).append(message);
+                var div = $('.message-box',this);
+                var pos = div.scrollTop();
+                div.scrollTop(pos + 100);
+                $('.chat-input',this).val("");
+            }
         }
     });
 

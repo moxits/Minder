@@ -23,13 +23,14 @@
                 <% for(var i=0; i<friends.length; i++) {%>
                     <div class="sidebar-name">
                         <!-- Pass username and display name to register popup -->
-                        <a href="javascript:register_popup('<%= friends[i].firstName %> <%= friends[i].lastName %>', '<%= friends[i].firstName %> <%= friends[i].lastName %>');">
+                        <a href="javascript:register_popup('<%= friends[i]._id %>', '<%= friends[i].firstName %> <%= friends[i].lastName %>');">
                         <!--<img width="30" height="30" src=>-->
                             <h3><%= friends[i].firstName %> <%= friends[i].lastName %></h3>
                         </a>
                     </div>
                 <% } %>
-                </div> 
+                </div>
+                <div id="msg-container"></div>
             </body>
         <!--
         <div class = "side-bar">
