@@ -105,6 +105,7 @@ router.get('/messages',require_login,function(req,res){
 router.post('/loadmessage',require_login,function(req,res){
   var user = req.user;
   var userlist = [user._id,req.body.id];
+  console.log(req.body);
   messageModel.find({from:{$in:userlist},to:{$in:userlist}},function(err,foundmsgs){
     if (err) return console.error(err);
     res.send(foundmsgs);

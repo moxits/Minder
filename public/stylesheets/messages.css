@@ -160,6 +160,16 @@ body
     height:89%;
     overflow: scroll;
 }
+p{
+    height: auto;
+    max-width: 60%;
+    background-color: #2962FF;
+    color: #fff;
+    margin: 5px 0;
+    padding: 10px 20px;
+    border-radius: 5px 20px 20px 5px;
+    display:table;
+}
 
 /*
 .side-bar{

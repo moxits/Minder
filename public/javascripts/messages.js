@@ -14,6 +14,7 @@ var popups = [];
 //this is used to close a popup
 function close_popup(id)
 {
+    $('.message-box','.popup-messages','#'+id).empty();
     for(var iii = 0; iii < popups.length; iii++)
     {
         if(id == popups[iii])
@@ -84,23 +85,23 @@ function register_popup(id, name)
     element = element + '<div class="popup-head-left">'+ name +'</div>';
     element = element + '<div class="popup-head-right"><a href="javascript:close_popup(\''+ id +'\');">&#10005;</a></div>';
     element = element + '<div style="clear: both"></div></div><div class="popup-messages"><div class = "message-box"></div><input type="text" class="chat-input"/></div></div>';
-    
+    var friendId = {
+        id:id,
+    }
     //document.getElementsByTagName("body")[0].innerHTML = document.getElementsByTagName("body")[0].innerHTML + element;  
     document.getElementById("msg-container").innerHTML = document.getElementById("msg-container").innerHTML + element; 
     $.ajax({
         url:"http://localhost:3000/users/loadmessage",
-        data: id,
-        type:"POST"
+        type: "POST",
+        data:friendId,
     })
     .done(function(json){
-        console.log(id);
-        console.log(json);
         for (i=0;i<json.length;i++){
             var message = document.createElement("p");
             message.innerHTML = json[i].text;
             $('.message-box').append(message);
         }
-    })
+    });
 
 
 
