@@ -7,6 +7,7 @@ $('#continue-button').click(function(){
 
     emailtosearch = $("input[name=email2").val();
     updateUser = {
+        email:emailtosearch,
         bio:$("#bio").val(),
         tags:tagArray,
         school:$('input[name=education').val(),
@@ -14,24 +15,10 @@ $('#continue-button').click(function(){
     }
     $.ajax({
         url:"http://localhost:3000/users",
-        type:"GET"
+        data:updateUser,
+        type:"PATCH",
     })
-    .done(function( json ){
-        var userList = json;
-        for (var i = 0; i < userList.length; i++) {
-            if (userList[i].email == emailtosearch){
-                var userId = userList[i]._id;            
-            }        
-        }
-        console.log(userId);
-        updateUser._id=userId;
-        $.ajax({
-            url:"http://localhost:3000/users",
-            data:updateUser,
-            type:"PATCH",
-        })
-        .done(function(json){
-            window.location.replace("http://localhost:3000/users/login");
-        })
+    .done(function(json){
+        window.location.replace("http://localhost:3000/users/login");
     })
 });

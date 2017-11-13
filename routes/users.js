@@ -3,7 +3,9 @@ var mongoose = require('mongoose');
 var cors = require('cors');
 var router = express.Router();
 var userModel = require('../models/User');
-var messageModel = require('../models/Message')
+var messageModel = require('../models/Message');
+var socketio = require('../socketio');
+
 
 
 router.post('/',function(req,res){
@@ -49,16 +51,16 @@ router.get('/', function(req, res, next) {
 });
 
 router.patch('/',function(req,res){
-    userModel.findById(req.body._id, function (err, user) {
-      if (err) return console.error(err);
-      user.bio = req.body.bio;
-      user.tags = req.body.tags;
-      user.school= req.body.school;
-      user.password = req.body.password;
-      user.save(function (err, updatedUser) {
-        if (err) return handleError(err);
-        res.send(updatedUser);
-    });
+  userModel.findOne({email:req.body.email},function(err,user){
+    if (err) return console.error(err);
+    user.bio = req.body.bio;
+    user.tags = req.body.tags;
+    user.school= req.body.school;
+    user.password = req.body.password;
+    user.save(function (err, updatedUser) {
+      if (err) return handleError(err);
+      res.send(updatedUser);
+  })
   })
 });
 
