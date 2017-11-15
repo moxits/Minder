@@ -7,18 +7,8 @@
         
         <link rel ='stylesheet' href='/stylesheets/profile-page.css'>
         <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
-    </head>
-    <body>
-        <header>
-            <h1>Minder</h1>
-            <div id = 'navbar'>
-            <ul>
-                <li><a href = "http://localhost:3000/users/navigation">Find Friends</a></li>
-                <li><a href = "http://localhost:3000/users/messages">Messages</a>  </li>
-                <li><a href = "http://localhost:3000/users/logout">Logout</a></li>
-            </ul>
-            </div>
-        </header>
+        <% include header %>
+        <div class="container">
         <div class="wrap">
             <div id="teachergallery">
             <h1><%=user.firstName %><%=user.lastName%></h1>
@@ -46,13 +36,28 @@
                     </div>
                 <% } %>
             </div>
+            <h3>Friend Requests</h3>
+            <div id ="requests-box">
+                <% for (var i=0;i<friendRequests.length;i++){%>
+                    <div class="users">
+                            <h5><%= friendRequests[i].firstName  %> <%= friendRequests[i].lastName %>, <%= friendRequests[i].school %></h5>   
+                            <h6>I am a <%= friendRequests[i].type %></h6>
+                            <h6><%= friendRequests[i].location %></h6>
+                            <button class="addFriend" value =<%= friendRequests[i].id %>>Accept Request</button>
+                    </div>
+                <% } %>
+            </div>
+        <div class = "container">
             <div id="map">
                 <h3>Location</h3>
                 <img src = "https://maps.googleapis.com/maps/api/staticmap?center=<%= user.location %>&zoom=13&size=400x300&maptype=roadmap&key=AIzaSyBXH8DzK5WJPti9iLN8_rAJ8KF2yKCOVxs">
             </div>
         </div>
         </div>
+        </div>
+        </div>
         <script src="/javascripts/profile-page.js"></script>
+        <% include footer %>
     </body>
  
 </html>

@@ -14,15 +14,14 @@ var popups = [];
 //this is used to close a popup
 function close_popup(id)
 {
-    $('.message-box','.popup-messages','#'+id).empty();
     for(var iii = 0; iii < popups.length; iii++)
     {
         if(id == popups[iii])
         {
             Array.remove(popups, iii);
             
-            document.getElementById(id).style.display = "none";
-            
+            document.getElementById(id).remove();
+        
             calculate_popups();
             
             return;
@@ -84,9 +83,11 @@ function register_popup(id, name)
     element = element + '<div class="popup-head">';
     element = element + '<div class="popup-head-left">'+ name +'</div>';
     element = element + '<div class="popup-head-right"><a href="javascript:close_popup(\''+ id +'\');">&#10005;</a></div>';
-    element = element + '<div style="clear: both"></div></div><div class="popup-messages"><div class = "message-box"></div><input type="text" class="chat-input"/></div></div>';
+    element = element + '<div style="clear: both"></div></div><div class="popup-messages"><div class = "message-box"><ul class="msg-list"></ul></div><input type="text" class="chat-input"/></div></div>';
+
     var friendId = {
         id:id,
+        
     }
     //document.getElementsByTagName("body")[0].innerHTML = document.getElementsByTagName("body")[0].innerHTML + element;  
     document.getElementById("msg-container").innerHTML = document.getElementById("msg-container").innerHTML + element; 
@@ -97,21 +98,43 @@ function register_popup(id, name)
     })
     .done(function(json){
         for (i=0;i<json.length;i++){
-            var message = document.createElement("p");
-            message.innerHTML = json[i].text;
-            $('.message-box').append(message);
+            var message = $('<li/>').addClass('message').html(json[i].text);
+            var div = document.getElementById(id);
+            if (json[i].from === id)
+            {
+                message.addClass("received");
+            }else{
+                message.addClass("sent");
+            }
+            $(".msg-list",'.message-box',".popup-messages",div).append(message);
+            messageContainer = $('.message-box',".popup-messages",div);
+            messageContainer[0].scrollTop = messageContainer[0].scrollHeight;
+
         }
     });
 
 
+    socket.on('chat message', function(msg){
+        var message = $('<li/>').addClass('message').html(msg.text);
+        var div = document.getElementById(id);
+        if (msg.from===id)
+        {
+            console.log(id);
+            message.addClass('received');
+            $(".msg-list",'.message-box',".popup-messages",div).append(message);
+            messageContainer = $('.message-box',".popup-messages",div);
+            messageContainer[0].scrollTop = messageContainer[0].scrollHeight;
+        }
+      });
 
     $("#msg-container").on("keypress",".popup-messages",function(event){
         key = event.keyCode;
         if (key===13){
             var newMsg = {};
+            text = $('.chat-input',this).val();
             newMsg.to = ($(this).parent().attr('id'));
-            var message = document.createElement("p")
-            newMsg.text = message.innerHTML = $('.chat-input',this).val();
+            var message = $('<li/>').addClass('message sent').html(text);
+            newMsg.text = text;
             newMsg.time = new Date($.now());
             if (newMsg.text!=""){
                 $.ajax({
@@ -119,10 +142,12 @@ function register_popup(id, name)
                     data:newMsg,
                     type:"POST",
                 })
-                $('.message-box',this).append(message);
-                var div = $('.message-box',this);
-                var pos = div.scrollTop();
-                div.scrollTop(pos + 100);
+                socket.emit('chat message', newMsg);
+                var div = document.getElementById(id);
+                console.log(message);
+                $(".msg-list",'.message-box',this).append(message);
+                var messageContainer = $('.message-box',this);
+                messageContainer[0].scrollTop = messageContainer[0].scrollHeight;               
                 $('.chat-input',this).val("");
             }
         }

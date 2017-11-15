@@ -2,8 +2,8 @@
 $('.addFriend').click(function(){
     var $this = $(this);
     
-    if ($this.text() === 'Add Friend'){
-        $this.text('Remove friend');
+    if ($this.text() === 'Send Friend Request'){
+        $this.text('Cancel Friend Request');
         $.ajax({
             url:"http://localhost:3000/users/addFriend/"+$this.val(),
             type: "POST",
@@ -12,7 +12,7 @@ $('.addFriend').click(function(){
             console.log(json);
         });
     }else{
-        $this.text('Add Friend');
+        $this.text('Send Friend Request');
         $.ajax({
             url:"http://localhost:3000/users/deleteFriend/"+$this.val(),
             type:"DELETE",

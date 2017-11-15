@@ -10,6 +10,8 @@ var userSchema = mongoose.Schema({
     tags: Array,
     school: String,
     friends: Array,
+    friendRequests:Array,
+    pendingFriends:Array,
     password: String,
 });
 

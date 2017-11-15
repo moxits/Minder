@@ -6,18 +6,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link rel = 'stylesheet' href = '/stylesheets/navigation.css'>
         <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
-    </head>
-    <body>
-        <header>
-            <h1>Minder</h1>
-            <div id = 'navbar'>
-            <ul>
-                <li><a href = "http://localhost:3000/users/messages">Messages</a></li>
-                <li><a href = "http://localhost:3000/users/profile-page">Profile</a></li>
-                <li><a href = "http://localhost:3000/users/logout">Logout</a></li>
-            </ul>
-            </div>
-        </header>
+        <% include header %>
         
         <div id = 'search'>
                 <form>
@@ -37,7 +26,7 @@
                             <h5><%= allusers[i].firstName  %> <%= allusers[i].lastName %>, <%= allusers[i].school %></h5>   
                             <h6>I am a <%= allusers[i].type %></h6>
                             <h6><%= allusers[i].location %></h6>
-                            <button class="addFriend" value =<%= allusers[i].id %>>Add Friend</button>
+                            <button class="addFriend" value =<%= allusers[i].id %>>Send Friend Request</button>
                         </div>
                 <% } %>
                 </div>
@@ -53,7 +42,7 @@
                     <h5><%= localusers[i].firstName  %> <%= localusers[i].lastName %>, <%= localusers[i].school %></h5>   
                     <h6>I am a <%= localusers[i].type %></h6>
                     <h6><%= localusers[i].location %></h6>
-                    <button class="addFriend" value =<%= localusers[i].id %>>Add Friend</button>
+                    <button class="addFriend" value =<%= localusers[i].id %>>Send Friend Request</button>
                 </div>
             <% } %>
         </div>
@@ -69,12 +58,13 @@
                     <h5><%= tagmatches[i].firstName  %> <%= tagmatches[i].lastName %>, <%= tagmatches[i].school %></h5>   
                     <h6>I am a <%= tagmatches[i].type %></h6>
                     <h6><%= tagmatches[i].location %></h6>
-                    <button class="addFriend" value =<%= tagmatches[i].id %>>Add Friend</button>
+                    <button class="addFriend" value =<%= tagmatches[i].id %>>Send Friend Request</button>
                 </div>
             <% } %>
             </div>
         </div>
         </div>
+        <% include footer %>
         <script src = "/javascripts/navigation.js"></script>
     </body>
 </html>

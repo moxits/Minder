@@ -7,18 +7,15 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link rel = 'stylesheet' href = '/stylesheets/messages.css'>
         <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
-    </head>
-    <body>
-        <header>
-            <h1>Minder</h1>
-            <div id = 'navbar'>
-            <ul>
-                <li><a href = "http://localhost:3000/users/navigation">Find Friends</a></li>
-                <li><a href = "http://localhost:3000/users/profile-page">Profile</a></li>
-                <li><a href = "http://localhost:3000/users/logout">Logout</a></li>
-            </ul>
-            </div>
-        </header>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+          var socket = io({
+            query: {
+              id: '<%= user._id %>'
+            }
+          });
+        </script>
+        <% include header %>
         <body>
                 <div class="chat-sidebar">
                 <% for(var i=0; i<friends.length; i++) {%>
@@ -46,6 +43,7 @@
         <div id = "message-box">
             <input type='text' id='chat-input'/>
         </div>-->
+        <% include footer %>
         <script src = '/javascripts/messages.js'></script>
     </body>
 </html>

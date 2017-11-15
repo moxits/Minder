@@ -12,3 +12,16 @@ function initMap() {
   });
 }
 
+$('.addFriend').click(function(){
+  var $this = $(this);
+  if ($this.text() === 'Accept Request'){
+    $this.text('Accepted');
+    $.ajax({
+        url:"http://localhost:3000/users/acceptRequest/"+$this.val(),
+        type: "POST",
+    })
+    .done(function(json){
+        console.log(json);
+    });
+  }
+});

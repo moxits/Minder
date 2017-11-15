@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var cors = require('cors');
 var session = require('client-sessions');
-var socketio = require('./socketio');
+
 
 var index = require('./routes/index');
 var users = require('./routes/users');
