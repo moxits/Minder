@@ -95,7 +95,7 @@ router.get('/profile-page', require_login, function(req, res) {
   })
   userModel.find({_id:{$in:user.friendRequests}},function(err,foundfriends){
     if (err) return console.error(err);
-    friendrequests = foundfriends;
+    var friendrequests = foundfriends;
     res.render('profile-page',{user:user,friends:friendslist,friendRequests:friendrequests});
   })
 });
@@ -141,7 +141,8 @@ router.post('/sendmessage',require_login,function(req,res){
 
 router.post('/addFriend/:userId',require_login,function(req,res){
   var user = req.user;
-  userModel.update({'_id':req.params.userId},{$push:{"friendRequests":user._id}},function(err,user){
+  var id = user._id;
+  userModel.update({'_id':req.params.userId},{$push:{"friendRequests":user._id }},function(err,user){
     if (err) return console.error(err);
    });
    userModel.update({'_id':user._id},{$push:{"pendingRequests":req.params.userId}},function(err,user){
@@ -151,18 +152,12 @@ router.post('/addFriend/:userId',require_login,function(req,res){
 });
 router.post('/acceptRequest/:userId',require_login,function(req,res){
   var user = req.user;
-  userModel.update({'_id':user._id},{$push:{"friends":req.params.userId}},function(err,user){
+  userModel.update({'_id':user._id},{$push:{"friends":req.params.userId},$pull:{"friendRequests":req.params.userId}},function(err,user){
     if (err) return console.error(err);
    });
    userModel.update({'_id':req.params.userId},{$push:{"friends":user._id}},function(err,user){
     if (err) return console.error(err);
    });
-   user.friendRequests.pull(req.params.userId);
-   user.save(function (err, updatedUser) {
-     if (err) return handleError(err);
-     res.send(updatedUser);
-   });
-  
 });
 router.delete('/deleteRequest/:userId',require_login,function(req,res){
   var user = req.user;

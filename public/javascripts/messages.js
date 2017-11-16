@@ -56,7 +56,16 @@ function display_popups()
 //creates markup for a new popup. Adds the id to popups array.
 function register_popup(id, name)
 {
-    
+    var todelete = $("#msg-container").children();
+    for (var i=0;i<=todelete.length;i++)
+    {
+        console.log(todelete[i]);
+        if (todelete[i]!=undefined)
+        {
+            var deleteID = todelete[i].getAttribute('id');
+            close_popup(deleteID);
+        }
+    }
     for(var iii = 0; iii < popups.length; iii++)
     {   
         //already registered. Bring it to front.
@@ -71,14 +80,7 @@ function register_popup(id, name)
             
             return;
         }
-    }               
-
-
-
-
-
-
-
+    }           
     var element = '<div class="popup-box chat-popup" id="'+ id +'">';
     element = element + '<div class="popup-head">';
     element = element + '<div class="popup-head-left">'+ name +'</div>';
@@ -97,17 +99,17 @@ function register_popup(id, name)
         data:friendId,
     })
     .done(function(json){
+        var division = $("#"+id)[0];
         for (i=0;i<json.length;i++){
             var message = $('<li/>').addClass('message').html(json[i].text);
-            var div = document.getElementById(id);
             if (json[i].from === id)
             {
                 message.addClass("received");
             }else{
                 message.addClass("sent");
             }
-            $(".msg-list",'.message-box',".popup-messages",div).append(message);
-            messageContainer = $('.message-box',".popup-messages",div);
+            $(".msg-list",'.message-box',".popup-messages",division).append(message);
+            messageContainer = $('.message-box',".popup-messages",division);
             messageContainer[0].scrollTop = messageContainer[0].scrollHeight;
 
         }
@@ -176,7 +178,7 @@ function calculate_popups()
     {
         width = width - 200;
         //320 is width of a single popup box
-        total_popups = parseInt(width/320);
+        total_popups = parseInt(width/1000);
     }
     
     display_popups();

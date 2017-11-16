@@ -8,6 +8,59 @@
         <link rel ='stylesheet' href='/stylesheets/profile-page.css'>
         <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
         <% include header %>
+       <div class="card-deck">
+            <div class="card" style="width: 20rem;">
+                <img class="card-img-top" src="https://qph.ec.quoracdn.net/main-qimg-87001d2ce810c2f48c97032cbc905939" alt="Card image cap">
+                        <div class="card-body">
+                          <h4 class="card-title"><%=user.firstName %> <%=user.lastName%></h4>
+                          <h5><%=user.type %></h5>
+                          <h6>About Me</h6>
+                          <p class="card-text"><%= user.bio %></p>
+                          <h6>Tags</h6> 
+                          <div class = 'profile-tags'>
+                                <ul>
+                                <% for(var i=0; i<user.tags.length; i++) {%>
+                                    <li><%= user.tags[i] %></li>
+                                <% } %>
+                                </ul>                                                   
+                        </div>
+                        <h6>Location</h6>
+                        <div id="map">
+                                <img class="img-thumbnail" src = "https://maps.googleapis.com/maps/api/staticmap?center=<%= user.location %>&zoom=13&size=400x300&maptype=roadmap&key=AIzaSyBXH8DzK5WJPti9iLN8_rAJ8KF2yKCOVxs">
+                            </div>
+                        </div>
+            </div>
+            <div class="container">
+                    <div class="card" id="bootstrap-overrides">
+                      <div class="card-body">
+                        <h4 class="card-title">Friends</h4>
+                        <div id="friends-box">
+                        <% for(var i=0; i<friends.length; i++) {%>
+                                <div class = "users">
+                                    <%= console.log(friends.length) %>
+                                    <h5><%= friends[i].firstName  %> <%= friends[i].lastName %>, <%= friends[i].school %></h5>   
+                                    <h6>I am a <%= friends[i].type %></h6>
+                                    <h6><%= friends[i].location %></h6>
+                                </div>
+                            <% } %>
+                            </div>
+                      </div>
+                    </div>
+                    <div class="card" id="bootstrap-overrides">
+                      <div class="card-body">
+                        <h4 class="card-title">Friend Requests</h4>
+                   
+                      </div>
+                    </div>
+                    <div class="card" id="bootstrap-overrides">
+                      <div class="card-body">
+                        <h4 class="card-title">Pending Requests</h4>
+                    
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+        <!--
         <div class="container">
         <div class="wrap">
             <div id="teachergallery">
@@ -55,7 +108,7 @@
         </div>
         </div>
         </div>
-        </div>
+        </div>-->
         <script src="/javascripts/profile-page.js"></script>
         <% include footer %>
     </body>

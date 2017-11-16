@@ -1,23 +1,5 @@
-header h1{
-    position: absolute;
-    color:#FF3E00;
-    top:0px;
-    left:50px;
-    font-size:60px;
-    
-}
-header{
-    display: block;
-    font-family: 'Quicksand', 'sans-serif';
-    margin-bottom:100px;
-}
-#navbar ul{
-    position: absolute;
-    top:30px;
-    right:30px;
-}
-#navbar li,#navbar button{
-    font-size:24px;
+.profile-tags li{
+    display:inline;
     background-color: black;
     border: none;
     color: white;
@@ -25,131 +7,18 @@ header{
     text-align: center;
     text-decoration: none;
     display: inline-block;
+    font-size: 16px;
     margin: 4px 2px;
-    cursor: pointer;
-    -webkit-transition-duration: 0.4s;
-    transition-duration: 0.4s;
-    font-family: 'Quicksand', 'sans-serif';
 }
-#navbar li:hover,#navbar button:hover{
-    font-size:24px;
-    background-color: white;
-    border: 1px solid black;
-    color: black;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    margin: 4px 2px;
-    cursor: pointer;
-    font-family: 'Quicksand', 'sans-serif';
+#bootstrap-overrides{
+    margin-bottom:30px;
 }
-body {
-    
-      height: 100%;
-        background: white;
-        margin-left: auto;
-        margin-right: auto;
-	    padding-top: 5em;
-	    padding-right: 2em;
-        padding-left: 2em;
-        width: 580px;	
-        }
-	
-h1 { 
-    margin: 20px 0 10px 0;
-	    }
-h2 {
-    
-    margin: 10px 0 20px 0;
-	border-top: 1px solid #c1c1c1;
-	padding-top: 5px;
-        }	
-	
-.wrap {
-        height: 900px;
-        background: #fff;
-        margin-left: auto;
-        margin-right: auto;
-	    width: 100%;
-		padding: 10px 0 10px 20px;
-		-webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.8);
-	    -moz-box-shadow: 1px 1px 3px rgba(0,0,0,.8);
-        box-shadow: 1px 1px 3px rgba(0,0,0,.8);
-        display:inline-block;
-		}
-
-#teachergallery {
-        float: left;
-		font-family:  Helvetica, Arial, sans-serif;
-		background: #fff;
-		
-        }
-#teachergallery a {
-        font-weight: normal;
-        color: #5f5f5f;
-        text-decoration: none;
-        }
-#teachergallery a:hover {
-        color: #fff;
-        }
-		
-.headshot  {
-	background: #c0c0c0;
-	float: left;
-	border-left: 2px solid #69f;
-	margin: 0 0 10px 0;
-	padding: 0;
-	-webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.8);
-	-moz-box-shadow: 1px 1px 3px rgba(0,0,0,.8);
-	box-shadow: 1px 1px 3px rbga(0,0,0,.8);
-	}
-.bio { 
-        width: 300px;
-        margin: 0 5px 0 0;
-        padding: 0 0 0 12px;
-        }
-.bio p {
-        margin: 0 0 1em 0;
-	}	
-.navi ul {
-        float: left;
-        width: 202px;
-	margin: 0;
-	padding: 0;
-        color: #5f5f5f;
-        text-decoration: none;
-	list-style: none;
-	
-	}
-.navi ul li {
-	display: block;
-	margin: 0;
-	padding: 0;
-	
-	}
-.navi ul li a {
-        display: block;
-	text-decoration: none;
-	margin: 0 0 5px 0;
-	padding: 12px 8px;
-	color: #5f5f5f;
-        background: #c1c1c1;
-	-webkit-box-shadow: 1px 1px 3px rgba(0,0,0,.8);
-	-moz-box-shadow: 1px 1px 3px rgba(0,0,0,.8);
-	box-shadow: 1px 1px 3px rbga(0,0,0,.8);
-	border-left: 2px solid #69f;
-	}	
-.navi ul li a:hover { 
-    background:  #69f;
-	color: #fff;
-	-webkit-box-shadow: 2px 1px 3px rgba(0,0,0,.8);
-	-moz-box-shadow: 2px 1px 3px rgba(0,0,0,.8);
-	box-shadow: 2px 1px 3px rgba(0,0,0,.8);
-    }
+.card-deck .card{
+    width:50%;
+}
 #friends-box{
-    overflow: scroll;
-    border:3px solid black;
+    height:200px;
+    overflow-y: scroll;
 }
 .users{
     border:3px solid black;
@@ -157,37 +26,4 @@ h2 {
 }
 .users *{
     margin:0;
-}
-/*
-.profile-picture{
-    position:absolute;
-    top:20%;
-    left:2%;
-    width:200px; 
-    height:200px;
-    border:3px solid black;
-    margin-bottom:30px;
-}
-#map{
-    position:absolute;
-    top:20%;
-    left:30%;
-    width:500px; 
-    height:200px;
-    border:1px solid black;
-    margin-bottom: 30px;
-}
-.profile-bio{
-    position:absolute;
-    top:50%;
-    left:2%;
-    width:500px;
-    height:300px;
-    border:3px solid black;
-
-}*/
-.profile-tags{
-    width: 300px;
-    margin: 0 5px 0 0;
-    padding: 0 0 0 12px;
 }
