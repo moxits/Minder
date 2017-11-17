@@ -49,7 +49,16 @@
                     <div class="card" id="bootstrap-overrides">
                       <div class="card-body">
                         <h4 class="card-title">Friend Requests</h4>
-                   
+                        <div id ="requests-box">
+                                <% for (var i=0;i<friendRequests.length;i++){%>
+                                    <div class="users">
+                                            <h5><%= friendRequests[i].firstName  %> <%= friendRequests[i].lastName %>, <%= friendRequests[i].school %></h5>   
+                                            <h6>I am a <%= friendRequests[i].type %></h6>
+                                            <h6><%= friendRequests[i].location %></h6>
+                                            <button class="addFriend" value =<%= friendRequests[i].id %>>Accept Request</button>
+                                    </div>
+                                <% } %>
+                            </div>
                       </div>
                     </div>
                     <div class="card" id="bootstrap-overrides">

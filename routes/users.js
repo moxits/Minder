@@ -152,7 +152,7 @@ router.post('/addFriend/:userId',require_login,function(req,res){
 });
 router.post('/acceptRequest/:userId',require_login,function(req,res){
   var user = req.user;
-  userModel.update({'_id':user._id},{$push:{"friends":req.params.userId},$pull:{"friendRequests":req.params.userId}},function(err,user){
+  userModel.update({'_id':user._id},{$pull:{"friendRequests":req.params.userId},$push:{"friends":req.params.userId}},function(err,user){
     if (err) return console.error(err);
    });
    userModel.update({'_id':req.params.userId},{$push:{"friends":user._id}},function(err,user){
