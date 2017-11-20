@@ -17,11 +17,32 @@ $('.addFriend').click(function(){
   if ($this.text() === 'Accept Request'){
     $this.text('Accepted');
     $.ajax({
-        url:"http://localhost:3000/users/acceptRequest/"+$this.val(),
+        url:"/users/acceptRequest/"+$this.val(),
         type: "POST",
     })
     .done(function(json){
+        location.reload();
         console.log(json);
     });
   }
+});
+$('.cancelRequest').click(function(){
+  var $this = $(this);
+  $.ajax({
+    url:'/users/deleteRequest/'+$this.val(),
+    type:"DELETE",
+  })
+  .done(function(json){
+    location.reload();
+  })
+});
+$('.denyRequest').click(function(){
+  var $this = $(this);
+  $.ajax({
+    url:'/users/denyRequest/'+$this.val(),
+    type:"DELETE",
+  })
+  .done(function(json){
+    location.reload();
+  })
 });

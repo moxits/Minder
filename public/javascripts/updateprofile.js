@@ -14,11 +14,11 @@ $('#continue-button').click(function(){
         password:$('input[name=password]').val(),
     }
     $.ajax({
-        url:"http://localhost:3000/users",
+        url:"/users",
         data:updateUser,
         type:"PATCH",
     })
     .done(function(json){
-        window.location.replace("http://localhost:3000/users/login");
+        window.location.replace("/users/login");
     })
 });

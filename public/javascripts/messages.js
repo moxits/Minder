@@ -94,7 +94,7 @@ function register_popup(id, name)
     //document.getElementsByTagName("body")[0].innerHTML = document.getElementsByTagName("body")[0].innerHTML + element;  
     document.getElementById("msg-container").innerHTML = document.getElementById("msg-container").innerHTML + element; 
     $.ajax({
-        url:"http://localhost:3000/users/loadmessage",
+        url:"/users/loadmessage",
         type: "POST",
         data:friendId,
     })
@@ -140,7 +140,7 @@ function register_popup(id, name)
             newMsg.time = new Date($.now());
             if (newMsg.text!=""){
                 $.ajax({
-                    url:"http://localhost:3000/users/sendmessage",
+                    url:"/users/sendmessage",
                     data:newMsg,
                     type:"POST",
                 })
@@ -178,7 +178,7 @@ function calculate_popups()
     {
         width = width - 200;
         //320 is width of a single popup box
-        total_popups = parseInt(width/1000);
+        total_popups = 1;
     }
     
     display_popups();

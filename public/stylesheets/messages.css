@@ -110,12 +110,13 @@ body
 .popup-box
 {
     display: none;
-    position: fixed;
-    bottom: 0px;
+    position: relative;
+    bottom: -100px;
     right: 220px;
-    height: 285px;
+    left:200px;
+    height: 400px;
     background-color: rgb(237, 239, 244);
-    width: 300px;
+    width: 800px;
     border: 1px solid rgba(29, 49, 91, .3);
 }
 
@@ -170,12 +171,14 @@ body
     list-style-type: none;
     background-color: #2962FF;
     color: #fff;
-    /*max-width: 60%;
+    max-width: 60%;
     height:auto;
     margin: 0 5px;
-    padding: 10px 20px;*/
+    padding: 10px 20px;
     border-radius: 20px 5px 5px 20px;
     text-align: right;
+    float:right;
+    clear:both;
 }
 .received{
     list-style-type:none;
@@ -187,5 +190,6 @@ body
     padding: 10px 20px;
     border-radius: 5px 20px 20px 5px;
     display:table;
-    text-align:left;
+    float:left;
+    clear:both;
 }

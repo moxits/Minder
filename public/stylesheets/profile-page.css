@@ -16,8 +16,8 @@
 .card-deck .card{
     width:50%;
 }
-#friends-box{
-    height:200px;
+#friends-box,#requests-box,#pending-box{
+    height:150px;
     overflow-y: scroll;
 }
 .users{

@@ -8,7 +8,7 @@ $('#join-box-button').click(function() {
         location:$('input[name=Location]').val(),
     };
     $.ajax({
-           url: "http://localhost:3000/users",
+           url: "/users",
            data: newUser,
            type: "POST",
        })
@@ -16,7 +16,7 @@ $('#join-box-button').click(function() {
            var userID = json._id;
            return newUser;
      });
-     window.location.replace("http://localhost:3000/users/profile");
+     window.location.replace("/users/profile");
 });
 
 

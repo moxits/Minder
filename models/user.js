@@ -11,7 +11,7 @@ var userSchema = mongoose.Schema({
     school: String,
     friends: Array,
     friendRequests:Array,
-    pendingFriends:Array,
+    pendingRequests:Array,
     password: String,
 });
 
