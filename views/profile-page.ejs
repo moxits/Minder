@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title><%=user.firstName %><%=user.lastName%></title>
+        <title><%=user.firstName %> <%=user.lastName%></title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         
         <link rel ='stylesheet' href='/stylesheets/profile-page.css'>
@@ -12,7 +12,7 @@
             <div class="card" style="width: 20rem;">
                 <img class="card-img-top" src="https://qph.ec.quoracdn.net/main-qimg-87001d2ce810c2f48c97032cbc905939" alt="Card image cap">
                         <div class="card-body">
-                          <h4 class="card-title"><%=user.firstName %> <%=user.lastName%></h4>
+                          <h4 class="card-title"><%=user.firstName %> <%=user.lastName%> <a href = "/users/edit-profile">(edit)</a></h4>
                           <h5><%=user.type %></h5>
                           <h6>About Me</h6>
                           <p class="card-text"><%= user.bio %></p>
@@ -37,8 +37,7 @@
                         <div id="friends-box">
                         <% for(var i=0; i<friends.length; i++) {%>
                                 <div class = "users">
-                                    <%= console.log(friends.length) %>
-                                    <h5><%= friends[i].firstName  %> <%= friends[i].lastName %>, <%= friends[i].school %></h5>   
+                                    <h5><a href = "/users/viewprofile/<%= friends[i].id %>"><%= friends[i].firstName  %> <%= friends[i].lastName %></a>, <%= friends[i].school %></h5>   
                                     <h6>I am a <%= friends[i].type %></h6>
                                     <h6><%= friends[i].location %></h6>
                                 </div>
@@ -52,7 +51,7 @@
                         <div id ="requests-box">
                                 <% for (var i=0;i<friendRequests.length;i++){%>
                                     <div class="users">
-                                            <h5><%= friendRequests[i].firstName  %> <%= friendRequests[i].lastName %>, <%= friendRequests[i].school %></h5>   
+                                            <h5><a href = "/users/viewprofile/<%= friendRequests[i].id %>"><%= friendRequests[i].firstName  %> <%= friendRequests[i].lastName %></a>, <%= friendRequests[i].school %></h5>   
                                             <h6>I am a <%= friendRequests[i].type %></h6>
                                             <h6><%= friendRequests[i].location %></h6>
                                             <button class="addFriend" value =<%= friendRequests[i].id %>>Accept Request</button>
@@ -68,7 +67,7 @@
                         <div id ="pending-box">
                             <% for (var i=0;i<pendingRequests.length;i++){%>
                                 <div class="users">
-                                        <h5><%= pendingRequests[i].firstName  %> <%= pendingRequests[i].lastName %>, <%= pendingRequests[i].school %></h5>   
+                                        <h5><a href = "/users/viewprofile/<%= pendingRequests[i].id %>"><%= pendingRequests[i].firstName  %> <%= pendingRequests[i].lastName %></a>, <%= pendingRequests[i].school %></h5>   
                                         <h6>I am a <%= pendingRequests[i].type %></h6>
                                         <h6><%= pendingRequests[i].location %></h6>
                                         <button class="cancelRequest" value=<%= pendingRequests[i].id %>>Cancel Request</button>
@@ -79,55 +78,6 @@
                     </div>
                     </div>
                   </div>
-        <!--
-        <div class="container">
-        <div class="wrap">
-            <div id="teachergallery">
-            <h1><%=user.firstName %><%=user.lastName%></h1>
-            <h2><%=user.type %></h2> 
-            <div class="bio">
-                <h3>Bio</h3>
-                <p><%= user.bio %></p>
-            </div>
-            <div class = 'profile-tags'>
-                    <h3>Tags</h3>
-                    <ul>
-                    <% for(var i=0; i<user.tags.length; i++) {%>
-                        <li><%= user.tags[i] %></li>
-                    <% } %>
-                    </ul>                                     
-                                
-            </div>
-            <h3>Friends</h3>
-            <div id="friends-box">
-                <% for(var i=0; i<friends.length; i++) {%>
-                    <div class = "users">
-                        <h5><%= friends[i].firstName  %> <%= friends[i].lastName %>, <%= friends[i].school %></h5>   
-                        <h6>I am a <%= friends[i].type %></h6>
-                        <h6><%= friends[i].location %></h6>
-                    </div>
-                <% } %>
-            </div>
-            <h3>Friend Requests</h3>
-            <div id ="requests-box">
-                <% for (var i=0;i<friendRequests.length;i++){%>
-                    <div class="users">
-                            <h5><%= friendRequests[i].firstName  %> <%= friendRequests[i].lastName %>, <%= friendRequests[i].school %></h5>   
-                            <h6>I am a <%= friendRequests[i].type %></h6>
-                            <h6><%= friendRequests[i].location %></h6>
-                            <button class="addFriend" value =<%= friendRequests[i].id %>>Accept Request</button>
-                    </div>
-                <% } %>
-            </div>
-        <div class = "container">
-            <div id="map">
-                <h3>Location</h3>
-                <img src = "https://maps.googleapis.com/maps/api/staticmap?center=<%= user.location %>&zoom=13&size=400x300&maptype=roadmap&key=AIzaSyBXH8DzK5WJPti9iLN8_rAJ8KF2yKCOVxs">
-            </div>
-        </div>
-        </div>
-        </div>
-        </div>-->
         <script src="/javascripts/profile-page.js"></script>
         <% include footer %>
     </body>

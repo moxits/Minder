@@ -1,10 +1,17 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
 <link rel="stylesheet" href = '/stylesheets/header.css'>
 <script>
-    function snackbar(message) {
-      var blah = $('#snackbar');
-      blah.addClass('show').text(message);
-      setTimeout(function(){ blah.removeClass('show') }, 3000);
+    function snackbar(message,type) {
+      if (type === 'msg'){
+        var blah = $('#snackbar');
+        blah.addClass('show').text(message);
+        setTimeout(function(){ blah.removeClass('show') }, 3000);
+      }
+      if (type === 'request'){
+          var blah = $('#snackbar');
+          blah.addClass('show').text(message);
+          setTimeout(function(){blah.removeClass('show')},10000);
+      }
     }
 </script>
 <% if(typeof user !== undefined) { %>
@@ -17,20 +24,24 @@
       });
       $(function() {
         socket.on('notifications', function(obj) {
-            if (obj.data.type === 'new_msg'){
-                let message = `${obj.data.from}: ${obj.data.text}`;
-                snackbar(message);
-            }
-            if (obj.data.type === 'new_request'){
-                let message = `${obj.data.from} sent you a friend request`
-                snackbar(message);
-            }
+          console.log(obj);
+          console.log(obj.type==='new_request'); 
+          if (obj.type === 'new_msg'){
+            let message = `${obj.data.from}: ${obj.data.text}`;
+            snackbar(message,'msg');
+          }
+          if (obj.type === 'new_request'){
+            let message = `${obj.data.from} sent you a friend request`;
+            snackbar(message,'request');
+          }
         })
       })
      </script>
   <% } %>    
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="bootstrap-overrides">
+        <a class="navbar-brand" href="#">Minder</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -39,10 +50,10 @@
                 <a class="nav-item nav-link active" href = "/users/profile-page">Profile </a>
                 <a class="nav-item nav-link active" href = "/users/navigation">Find Friends </a>
                 <a class="nav-item nav-link active" href = "/users/messages">Messages </a>
-                <a  class="nav-item nav-link active"href = "/users/logout">Logout</a>
+                <a  class="nav-item nav-link active" href = "/users/logout">Logout</a>
           </div>
         </div>
       </nav>
-      <div id="snackbar"></div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="bootstrap-overrides">
-        <a class="navbar-brand" href="#">Minder</a>
+      <div id="snackbar">
+      </div>
+  

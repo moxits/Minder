@@ -1,11 +1,18 @@
 function addTags(){
-    var tagList = document.getElementById('tag-list');
-    var tag = document.getElementById("tag-textbox").value;
-    var entry = document.createElement('li');
-    entry.appendChild(document.createTextNode(tag));
-    tagList.appendChild(entry);
+    var tagList = $('#tag-list');
+    var tag = $("#tag-textbox").val();
+    var entire = $('<div>')
+    var entry = $('<li>').addClass('tag').text(tag);
+    entry.innerHTML = (tag);
+    var deleteBtn = $('<span>').addClass('tag-delete').text('X');
+    entire.append(entry);
+    entire.append(deleteBtn);
+    tagList.append(entire);
     document.getElementById('tag-textbox').value = '';
 }
+$('#tag-list').on('click', '.tag-delete', function() {
+    $(this).parent().remove();
+  });
  
     setTimeout(function(){
 var video = document.querySelector("#videoElement");

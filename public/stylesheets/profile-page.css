@@ -1,14 +1,11 @@
 .profile-tags li{
     display:inline;
-    background-color: black;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
+    border-radius: 20px;
+    background: #e8e8e8;
+    padding: 5px 15px;
     display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
+    margin: 3px;
+        
 }
 #bootstrap-overrides{
     margin-bottom:30px;

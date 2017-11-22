@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        
+        <% include header %>
+        <meta charset="UTF-8">
+        <title><%= viewedUser.firstName %> <%= viewedUser.lastName%></title>
+        
+        <link rel ='stylesheet' href='/stylesheets/view-profile.css'>
+        <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+       
+            <div class="card" id="profile" style="width: 20rem;">
+                <img class="card-img-top" src="https://qph.ec.quoracdn.net/main-qimg-87001d2ce810c2f48c97032cbc905939" alt="Card image cap">
+                        <div class="card-body">  
+                        <button id="actionType"  value =<%= viewedUser.id %>></button>    
+                        <button id="denyRequest" value =<%= viewedUser.id %>>Deny Request</button>       
+                        <h4 class="card-title"><%= viewedUser.firstName %> <%= viewedUser.lastName %></h4>
+                          <h5><%= viewedUser.type %></h5>
+                          <h6>About Me</h6>
+                          <p class="card-text"><%= viewedUser.bio %></p>
+                          <h6>Tags</h6> 
+                         
+                        <h6>Location</h6>
+                        <div id="map">
+                                <img class="img-thumbnail" src = "https://maps.googleapis.com/maps/api/staticmap?center=<%= viewedUser.location %>&zoom=13&size=400x300&maptype=roadmap&key=AIzaSyBXH8DzK5WJPti9iLN8_rAJ8KF2yKCOVxs">
+                            </div>
+                        </div>
+            </div>
+            <script>
+                var user;
+                $.ajax({
+                    url:'/users/getuser',
+                    type:"GET"
+                }).done(function(json){
+                    user = json;
+                })
+                $(document).ready(function(){
+                    var otherId = ($('#actionType').val());
+                    if (user.friends.indexOf(otherId)>=0){
+                        $('#actionType').text("Friends")
+                    }else if(user.pendingRequests.indexOf(otherId)>=0){
+                       $("#actionType").text("Cancel Request");
+                       $("#actionType").click(function(){
+                           $.ajax({
+                               url:'/users/deleteRequest/'+otherId,
+                               type:"DELETE",
+                           }).done(function(json){
+                               location.reload();
+                           })
+                       });
+                    }
+                    else if (user.friendRequests.indexOf(otherId)>=0){
+                        $("#actionType").text("Accept Request");
+                        document.getElementById("denyRequest").style.display = 'inline-block';
+                        $('#actionType').click(function(){
+                            $.ajax({
+                                url:"/users/acceptRequest/"+otherId,
+                                type: "POST",
+                            }).done(function(json){
+                                location.reload();
+                                console.log(json);
+                            })
+                        });
+                        $('#denyRequest').click(function(){
+                              $.ajax({
+                                  url:'/users/denyRequest/'+otherId,
+                                  type:"DELETE",
+                                }).done(function(json){
+                                    location.reload();
+                                })
+                            });
+                    }
+                    else{
+                        $("#actionType").text("Send Friend Request");
+                        $.ajax({
+                             url:"/users/addFriend/"+otherId,
+                             type: "POST",
+                        })  
+                    }
+                });
+            </script>
+
+            <% include footer %>
+
+        </body>
+     
+    </html>

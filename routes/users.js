@@ -21,6 +21,7 @@ router.post('/',function(req,res){
 router.get("/login",function(req,res){
   res.render('login');
 });
+
 router.get("/profile",function(req,res){
   res.render("profile");
 });
@@ -86,6 +87,9 @@ function require_login(req, res, next) {
     next();
   }
 };
+router.get("/getuser",require_login,function(req,res){
+  res.send(req.session.user);
+});
 router.get('/profile-page', require_login, function(req, res) {
   var user=req.user;
   var friendslist = [];
@@ -107,6 +111,18 @@ router.get('/profile-page', require_login, function(req, res) {
         res.render('profile-page',{user:user,friends:friendslist,friendRequests:friendrequests,pendingRequests:pending});
       })
     })
+});
+router.get('/edit-profile',require_login,function(req,res){
+  res.render('edit-profile',{user:req.user});
+});
+router.get('/viewprofile/:userId',require_login,function(req,res){
+  var found;
+  var user = req.user;
+  userModel.findOne({"_id":req.params.userId},function(err,foundUser){
+    if (err) return console.error(err);
+    console.log(user);
+    res.render('view-profile',{viewedUser:foundUser});
+  })
 });
 //CHAT FUNCTIONS
 router.get('/messages',require_login,function(req,res){
@@ -206,7 +222,7 @@ router.get('/navigation',require_login,function(req,res){
   var not_friends =[];
   var local_users = [];
   var tag_matches = [];
-  userModel.find({_id:{$nin:user.pendingRequests.concat(user._id,user.friendRequests)}},function (err, users){
+  userModel.find({_id:{$nin:user.pendingRequests.concat(user._id,user.friendRequests,user.friends)}},function (err, users){
     if (err) return console.error(err);
     not_friends = users;
   }).then(function(){
@@ -216,7 +232,7 @@ router.get('/navigation',require_login,function(req,res){
         local_users.push(not_friends[x]);
       } 
     }
-    userModel.find({_id:{$nin:user.pendingRequests.concat(user._id,user.friendRequests)},tags:{$in:user.tags}},function(err,matchedusers){
+    userModel.find({_id:{$nin:user.pendingRequests.concat(user._id,user.friendRequests,user.friends)},tags:{$in:user.tags}},function(err,matchedusers){
       for (var y = 0;y<matchedusers.length;y++){
         if (!(matchedusers[y] in not_friends)){
           tag_matches.push(matchedusers[y]);

@@ -2,36 +2,21 @@
 <html lang = "en">
 <head>
         <meta charset = "UTF-8">
-        <title>Profile</title>
+        <title>Edit Profile</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
-        <link rel = "stylesheet" href = "/stylesheets/profile.css"> 
+    
         
-</head>
-<body>
-    <header>
-        <h1>Minder</h1>
-        <div id = "header-button">
-                <a href = "login.html">Have An Account? Log In</a>
-        </div>
-    </header>
-    <div class = 'profile'>
-    <div class = 'profile-picture'>
-            <h5>Add A Profile Picture</h5>
-            <video autoplay="true" id ="videoElement">
-            </video>
-            <img src = "">
-            <canvas id="profile-image" style="display:none;" width="150" height="150"></canvas>
-            <button onclick="takePic()">Take Picture</button>
-    </div>
+                        
+        <% include header %>
     <div class =  "profile-description">
-        <textarea id='bio'rows = 4 cols = 50 placeholder = 'Please enter a short description about yourself.'></textarea>
+        <textarea id='bio'rows = 4 cols = 50 placeholder = <%= user.bio %>></textarea>
     </div>
     <div class = 'profile-tags'>
         <input id='tag-textbox' type='text' name='tags' placeholder='Enter a skill or quality tag'>
         <button onclick="addTags()">Add Tag</button>
         <br>
-        <ul id='tag-list'>
+        <ul id = 'tag-list'>
         </ul>
     </div>
     <div class = "profile-education">
@@ -41,9 +26,10 @@
         <input type='email' name='email2' placeholder='Enter your email again'><br>
         <input type='password' name='password' placeholder='Reenter the password'><br>
     </div>
-        <button id = 'continue-button'>Continue</button>
+        <button id='Save'>Save</button>
     </div>
     <script src='/javascripts/updateprofile.js'></script>
-    <script src = '/javascripts/profile.js'></script>
+    <!--<script src = '/javascripts/profile.js'></script>-->
+    <% include footer %>
 </body>
 </html>

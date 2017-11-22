@@ -14,7 +14,7 @@ $('.addFriend').click(function(){
     }else{
         $this.text('Send Friend Request');
         $.ajax({
-            url:"/users/deleteFriend/"+$this.val(),
+            url:"/users/deleteRequest/"+$this.val(),
             type:"DELETE",
         })
         .done(function(json){

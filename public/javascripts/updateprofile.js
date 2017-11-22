@@ -1,7 +1,9 @@
 var updateUser;
 $('#continue-button').click(function(){
     var tagArray = [];
-    $( "li" ).each(function() {
+    $( ".tag" ).each(function() {
+        var text = $(this).text();
+        var topush = text.substring(0,text.length-1)
         tagArray.push($(this).text());
       });             
 

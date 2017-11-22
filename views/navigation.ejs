@@ -7,12 +7,6 @@
         <link rel = 'stylesheet' href = '/stylesheets/navigation.css'>
         <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
         <% include header %>
-        
-        <div id = 'search'>
-                <form>
-                    <input type="text" name="search" placeholder="Search for profiles">
-                </form>
-        </div>
         <div id='matches'>
         <!--<div id = 'all-users'>
             <h3>All Users</h3>
@@ -23,7 +17,7 @@
                 <div id='all-users'>
                 <% for(var i=0; i<allusers.length; i++) {%>
                         <div class = "users">
-                            <h5><%= allusers[i].firstName  %> <%= allusers[i].lastName %>, <%= allusers[i].school %></h5>   
+                            <h5><a href = "/users/viewprofile/<%= allusers[i].id %>"><%= allusers[i].firstName  %> <%= allusers[i].lastName %></a>, <%= allusers[i].school %></h5>   
                             <h6>I am a <%= allusers[i].type %></h6>
                             <h6><%= allusers[i].location %></h6>
                             <button class="addFriend" value =<%= allusers[i].id %>>Send Friend Request</button>
@@ -39,7 +33,7 @@
             <div id='local-matches'>
             <% for(var i=0; i<localusers.length; i++) {%>
                 <div class = "users">
-                    <h5><%= localusers[i].firstName  %> <%= localusers[i].lastName %>, <%= localusers[i].school %></h5>   
+                    <h5><a href = "/users/viewprofile/<%= localusers[i].id %>"><%= localusers[i].firstName  %> <%= localusers[i].lastName %></a>, <%= localusers[i].school %></h5>   
                     <h6>I am a <%= localusers[i].type %></h6>
                     <h6><%= localusers[i].location %></h6>
                     <button class="addFriend" value =<%= localusers[i].id %>>Send Friend Request</button>
@@ -55,7 +49,7 @@
             <div id='tag-matches'>
             <% for(var i=0; i<tagmatches.length; i++) {%>
                 <div class = "users">
-                    <h5><%= tagmatches[i].firstName  %> <%= tagmatches[i].lastName %>, <%= tagmatches[i].school %></h5>   
+                    <h5><a href = "/users/viewprofile/<%= tagmatches[i].id %>"><%= tagmatches[i].firstName  %> <%= tagmatches[i].lastName %></a>, <%= tagmatches[i].school %></h5>   
                     <h6>I am a <%= tagmatches[i].type %></h6>
                     <h6><%= tagmatches[i].location %></h6>
                     <button class="addFriend" value =<%= tagmatches[i].id %>>Send Friend Request</button>
