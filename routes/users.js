@@ -55,7 +55,7 @@ router.patch('/',function(req,res){
   userModel.findOne({email:req.body.email},function(err,user){
     if (err) return console.error(err);
     user.bio = req.body.bio;
-    user.tags = req.body.tags;
+    user.tags=req.body.tags;
     user.school= req.body.school;
     user.password = req.body.password;
     user.save(function (err, updatedUser) {
@@ -126,6 +126,11 @@ router.get('/viewprofile/:userId',require_login,function(req,res){
 });
 //CHAT FUNCTIONS
 router.get('/messages',require_login,function(req,res){
+  var user = req.user;
+  user.unread = 0; 
+  user.save(function (err, updatedUser) {
+      if (err) return handleError(err);
+  });
   var friendslist = []; 
   userModel.find({_id:{$in:req.user.friends}},function(err,foundfriends){
     if (err) return console.error(err);
@@ -147,25 +152,39 @@ router.post('/loadmessage/',require_login,function(req,res){
     res.send(foundmsgs);
   })
 });
-
+function increment_unread(receipient_id){
+  console.log(receipient_id);
+  userModel.findOne({"_id":receipient_id},function(err,user){
+    var current = parseInt(user.unread);
+    current = current + 1;
+    user.unread = current;
+    user.save(function(err,user){
+      if (err) return console.error(err);
+      console.log(user);
+    })
+  })
+}
 router.post('/sendmessage',require_login,function(req,res){
   var newMsg = new messageModel(req.body);
   newMsg.from = req.user._id;
-    var identifier = [req.user._id.toString(),newMsg.to.toString()];
-    identifier.sort();
-    newMsg.save(function(err,msg){
-      if (err){
-        console.error(err);
-        return res.send('ERROR');
-      }
+  increment_unread(newMsg.to);
+  var identifier = [req.user._id.toString(),newMsg.to.toString()];
+  identifier.sort();
+  newMsg.save(function(err,msg){
+    if (err){
+      console.error(err);
+      return res.send('ERROR');
+    }
       socketio.instance().to(identifier.toString()).emit('chat message', msg);
-      socketio.sockets()[newMsg.to].emit('notifications', {
-        type: 'new_message',
-        data: {
-          from: req.user.firstName + ' ' + req.user.lastName,
-          text: newMsg.text
-        }
-    })
+      if (socketio.sockets()[newMsg.to]){
+        socketio.sockets()[newMsg.to].emit('notifications', {
+          type: 'new_message',
+          data: {
+            from: req.user.firstName + ' ' + req.user.lastName,
+            text: newMsg.text
+           }
+        })
+      }    
   })
     res.end();
 });
@@ -178,12 +197,14 @@ router.post('/addFriend/:userId',require_login,function(req,res){
    userModel.update({'_id':user._id},{$push:{"pendingRequests":mongoose.Types.ObjectId(req.params.userId)}},function(err,user){
     if (err) return console.error(err);
    });
-   socketio.sockets()[req.params.userId].emit('notifications', { 
-     type: 'new_request',
-     data:{
-       from: user.firstName + ' ' + user.lastName
-     }
-    })
+   if (socketio.sockets()[req.params.userId]){
+    socketio.sockets()[req.params.userId].emit('notifications', { 
+      type: 'new_request',
+      data:{
+        from: user.firstName + ' ' + user.lastName
+      }
+      })
+    }
    res.send(user);
 });
 router.post('/acceptRequest/:userId',require_login,function(req,res){

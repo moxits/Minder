@@ -1,0 +1,39 @@
+.tag{
+    display:inline;
+    border-radius: 20px;
+    background: #e8e8e8;
+    padding: 5px 15px;
+    display: inline-block;
+    margin: 3px;
+        
+}
+.tag-delete {
+    color: red;
+    cursor: pointer;
+    margin-left: 3px;
+  }
+  .profile-education input[type=text],.profile-location input[type=text],#new-password input[type=password],#new-password input[type=email]{
+    width:350px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;   
+    margin-left:-100px;     
+}
+textarea{
+    position:relative;
+    left:-113px;
+}
+.profile-tags{
+    margin-left: -50px;
+}
+.profile-tags ul{
+    margin-left: -100px;
+    margin-right:500px;
+}
+#container{
+    margin-top:100px;
+    margin-left:634px;
+}

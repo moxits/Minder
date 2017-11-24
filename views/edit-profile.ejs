@@ -5,13 +5,16 @@
         <title>Edit Profile</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+        <link href="/stylesheets/edit-profile.css" rel="stylesheet">
     
         
                         
         <% include header %>
+    <div class="container" id="container">
+        <h3>Edit Profile</h3>
     <div class =  "profile-description">
-        <textarea id='bio'rows = 4 cols = 50 placeholder = <%= user.bio %>></textarea>
-    </div>
+        <textarea id='bio'rows = 4 cols = 50></textarea>
+    </div> 
     <div class = 'profile-tags'>
         <input id='tag-textbox' type='text' name='tags' placeholder='Enter a skill or quality tag'>
         <button onclick="addTags()">Add Tag</button>
@@ -20,16 +23,41 @@
         </ul>
     </div>
     <div class = "profile-education">
-        <input type = 'text' name = 'education' placeholder = 'Which university do you attend?'><br>
+        <input type = 'text' id='school' name = 'education' placeholder = 'Which university do you attend?'><br>
     </div>
     <div id="new-password">
-        <input type='email' name='email2' placeholder='Enter your email again'><br>
-        <input type='password' name='password' placeholder='Reenter the password'><br>
+        <input type='email' id='email' name='email2' placeholder='Enter your email again'><br>
+        <input type='password' name='password' placeholder='Enter your password'><br>
     </div>
-        <button id='Save'>Save</button>
+        <button id='continue-button'>Save</button>
     </div>
-    <script src='/javascripts/updateprofile.js'></script>
-    <!--<script src = '/javascripts/profile.js'></script>-->
+    </div>
+    <script>
+         $(document).ready(function(){
+            var user;
+            $.ajax({
+                url:'/users/getuser',
+                type:"GET"
+            }).done(function(json){
+                user = json;
+                $('#bio').val(user.bio);
+                $('#school').val(user.school);
+                $('#email').val(user.email);
+                for (var i=0;i<user.tags.length;i++){
+                    var tagList = $('#tag-list');
+                    var tag = user.tags[i];
+                    var entire = $('<div>')
+                    var entry = $('<li>').addClass('tag').text(tag);
+                    entry.innerHTML = (tag);
+                    var deleteBtn = $('<span>').addClass('tag-delete').text('X');
+                    entire.append(entry);
+                    entire.append(deleteBtn);
+                    tagList.append(entire);   
+                }
+            });
+        });
+    </script>
+    <script src = '/javascripts/edit-profile.js'></script>
     <% include footer %>
 </body>
 </html>

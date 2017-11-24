@@ -13,6 +13,7 @@ var userSchema = mongoose.Schema({
     friendRequests:Array,
     pendingRequests:Array,
     password: String,
+    unread: String,
 });
 
   module.exports = mongoose.model('User', userSchema);

@@ -5,12 +5,18 @@
       if (type === 'msg'){
         var blah = $('#snackbar');
         blah.addClass('show').text(message);
-        setTimeout(function(){ blah.removeClass('show') }, 3000);
+        setTimeout(function(){ blah.removeClass('show') }, 3000*10); 
+        blah.click(function(){
+          window.location.replace("/users/messages");
+        });
       }
       if (type === 'request'){
           var blah = $('#snackbar');
           blah.addClass('show').text(message);
-          setTimeout(function(){blah.removeClass('show')},10000);
+          setTimeout(function(){blah.removeClass('show')},10000);  
+          blah.click(function(){
+          window.location.replace("/users/profile-page");
+        }); 
       }
     }
 </script>
@@ -22,16 +28,25 @@
           id: '<%= user._id %>'
         }
       });
+      var unread='<%= user.unread%>';
+      console.log(unread);
+      $(document).ready(function(){
+        if (unread>0){
+          $('#unread-messages').text(`(${unread})`);
+        }
+      });
+
       $(function() {
         socket.on('notifications', function(obj) {
-          console.log(obj);
-          console.log(obj.type==='new_request'); 
-          if (obj.type === 'new_msg'){
-            let message = `${obj.data.from}: ${obj.data.text}`;
+          if (obj.type === 'new_message'){
+            let message = `${obj.data.from} sent you a message: ${obj.data.text}.  Click here to respond`;
             snackbar(message,'msg');
+            unread = parseInt(unread)+1;
+            $('#unread-messages').text(`(${unread})`);
+
           }
           if (obj.type === 'new_request'){
-            let message = `${obj.data.from} sent you a friend request`;
+            let message = `${obj.data.from} sent you a friend request. Click here to respond`;
             snackbar(message,'request');
           }
         })
@@ -49,7 +64,7 @@
           <div class="navbar-nav">
                 <a class="nav-item nav-link active" href = "/users/profile-page">Profile </a>
                 <a class="nav-item nav-link active" href = "/users/navigation">Find Friends </a>
-                <a class="nav-item nav-link active" href = "/users/messages">Messages </a>
+                <a class="nav-item nav-link active" href = "/users/messages">Messages <span id="unread-messages"></span> </a>
                 <a  class="nav-item nav-link active" href = "/users/logout">Logout</a>
           </div>
         </div>
