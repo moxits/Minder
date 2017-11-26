@@ -14,6 +14,7 @@ var userSchema = mongoose.Schema({
     pendingRequests:Array,
     password: String,
     unread: String,
+    photo:String
 });
 
   module.exports = mongoose.model('User', userSchema);

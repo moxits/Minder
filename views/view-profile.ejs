@@ -11,7 +11,7 @@
         <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
        
             <div class="card" id="profile" style="width: 20rem;">
-                <img class="card-img-top" src="https://qph.ec.quoracdn.net/main-qimg-87001d2ce810c2f48c97032cbc905939" alt="Card image cap">
+                <img class="card-img-top" src=<%= viewedUser.photo %> alt="Card image cap">
                         <div class="card-body">  
                         <button id="actionType"  value =<%= viewedUser.id %>></button>    
                         <button id="denyRequest" value =<%= viewedUser.id %>>Deny Request</button>       
@@ -20,7 +20,9 @@
                           <h6>About Me</h6>
                           <p class="card-text"><%= viewedUser.bio %></p>
                           <h6>Tags</h6> 
-                         
+                          <% for (var i=0;i<viewedUser.tags.length;i++){%>
+                          <ul id = 'tag-list'>
+                            </ul>
                         <h6>Location</h6>
                         <div id="map">
                                 <img class="img-thumbnail" src = "https://maps.googleapis.com/maps/api/staticmap?center=<%= viewedUser.location %>&zoom=13&size=400x300&maptype=roadmap&key=AIzaSyBXH8DzK5WJPti9iLN8_rAJ8KF2yKCOVxs">
@@ -36,6 +38,7 @@
                     user = json;
                 })
                 $(document).ready(function(){
+                    
                     var otherId = ($('#actionType').val());
                     if (user.friends.indexOf(otherId)>=0){
                         $('#actionType').text("Friends")

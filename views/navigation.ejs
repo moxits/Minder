@@ -15,14 +15,18 @@
         <div id = 'all-users-box'>
                 <pre><h3>All Users</h3></pre>
                 <div id='all-users'>
-                <% for(var i=0; i<allusers.length; i++) {%>
-                        <div class = "users">
-                            <h5><a href = "/users/viewprofile/<%= allusers[i].id %>"><%= allusers[i].firstName  %> <%= allusers[i].lastName %></a>, <%= allusers[i].school %></h5>   
-                            <h6>I am a <%= allusers[i].type %></h6>
-                            <h6><%= allusers[i].location %></h6>
-                            <button class="addFriend" value =<%= allusers[i].id %>>Send Friend Request</button>
-                        </div>
-                <% } %>
+                    <% for(var i=0; i<allusers.length; i++) {%>
+                        <div class="media block-update-card">
+                                <a class="pull-left" href="#">
+                                  <img class="media-object update-card-MDimentions" src=<%= allusers[i].photo %> alt="...">
+                                </a>
+                                <div class="media-body update-card-body">
+                                  <h4 class="media-heading"><a href = "/users/viewprofile/<%= allusers[i].id %>"><%= allusers[i].firstName  %> <%= allusers[i].lastName %></a>, <%= allusers[i].school %></h4>
+                                  <p><%= allusers[i].bio %></p>
+                                  <button class="addFriend" value =<%= allusers[i].id %>>Send Friend Request</button>
+                                </div>
+                               </div>
+                    <% } %>-->
                 </div>
         </div>
         <!--<div id='local-matches'>
@@ -32,12 +36,16 @@
             <pre><h3>Users Near You</h3></pre>
             <div id='local-matches'>
             <% for(var i=0; i<localusers.length; i++) {%>
-                <div class = "users">
-                    <h5><a href = "/users/viewprofile/<%= localusers[i].id %>"><%= localusers[i].firstName  %> <%= localusers[i].lastName %></a>, <%= localusers[i].school %></h5>   
-                    <h6>I am a <%= localusers[i].type %></h6>
-                    <h6><%= localusers[i].location %></h6>
-                    <button class="addFriend" value =<%= localusers[i].id %>>Send Friend Request</button>
-                </div>
+                    <div class="media block-update-card">
+                            <a class="pull-left" href="#">
+                              <img class="media-object update-card-MDimentions" src=<%= localusers[i].photo %> alt="...">
+                            </a>
+                            <div class="media-body update-card-body">
+                              <h4 class="media-heading"><a href = "/users/viewprofile/<%= localusers[i].id %>"><%= localusers[i].firstName  %> <%= localusers[i].lastName %></a>, <%= localusers[i].school %></h4>
+                              <p><%= localusers[i].bio %></p>
+                              <button class="addFriend" value =<%= localusers[i].id %>>Send Friend Request</button>
+                            </div>
+                           </div>
             <% } %>
         </div>
         </div>
@@ -48,12 +56,17 @@
             <pre><h3>Users with Similar Tags</h3></pre>
             <div id='tag-matches'>
             <% for(var i=0; i<tagmatches.length; i++) {%>
-                <div class = "users">
-                    <h5><a href = "/users/viewprofile/<%= tagmatches[i].id %>"><%= tagmatches[i].firstName  %> <%= tagmatches[i].lastName %></a>, <%= tagmatches[i].school %></h5>   
-                    <h6>I am a <%= tagmatches[i].type %></h6>
-                    <h6><%= tagmatches[i].location %></h6>
-                    <button class="addFriend" value =<%= tagmatches[i].id %>>Send Friend Request</button>
-                </div>
+                    <div class="media block-update-card">
+                            <a class="pull-left" href="#">
+                              <img class="media-object update-card-MDimentions" src=<%= tagmatches[i].photo %> alt="...">
+                            </a>
+                            <div class="media-body update-card-body">
+                              <h4 class="media-heading"><a href = "/users/viewprofile/<%= tagmatches[i].id %>"><%= tagmatches[i].firstName  %> <%= tagmatches[i].lastName %></a>, <%= tagmatches[i].school %></h4>
+                              <p><%= tagmatches[i].bio %></p>
+                              <button class="addFriend" value =<%= tagmatches[i].id %>>Send Friend Request</button>
+                            </div>
+                           </div>
+               
             <% } %>
             </div>
         </div>

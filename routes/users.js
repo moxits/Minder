@@ -1,11 +1,81 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var cors = require('cors');
+var axios = require('axios');
 var router = express.Router();
 var userModel = require('../models/User');
 var messageModel = require('../models/Message');
 var socketio = require('../socketio');
 
+router.get('/random', function(req, res) {
+  const randomTags = [
+    'HTML',
+    'CSS',
+    'JavaScript',
+    'Ajax',
+    'Python',
+    'coding',
+    'JAVA',
+    'C++'
+  ];
+  const randomSchools = [
+    'UC Irvine',
+    'SF State',
+    'UC Davis',
+    'San Jose State University'
+  ];
+  
+  const randomLocations = ['94536','92617','92697'];
+
+
+
+
+
+  axios.get('https://randomuser.me/api/?inc=login,name,email,picture&results=50')
+     .then(function(response) {
+          response.data.results.forEach(function(userInfo) {
+            let tags = [];
+            for (let i = 0; i < Math.floor(Math.random() * randomTags.length); ++i) {
+              let random = randomTags[Math.floor(Math.random() * randomTags.length)];
+              if (tags.indexOf(random) == -1) {
+                tags.push(random);
+              }
+            }
+            let randomLocation =
+            randomLocations[Math.floor(Math.random() * randomLocations.length)];
+          
+            let randomSchool =
+              randomSchools[Math.floor(Math.random() * randomSchools.length)];
+            let newUser = new userModel({
+              firstName: `${userInfo.name.first}`,
+              lastName: `${userInfo.name.last}`,
+              email: userInfo.email,
+              location: randomLocation,
+              school:randomSchool,
+              password: '12345',
+              bio: `Hey guys, my name's ${userInfo.name.first} ${userInfo
+                .name.last}`,
+              tags: tags,
+              //location: randomLocation,
+              photo: userInfo.picture.large
+            });
+            console.log(newUser);
+            newUser.save(function(err, user) {
+              if (err) {
+                console.error(err);
+              }
+  
+              // res.json(user);
+            });
+          })
+        res.end();
+      }
+    )
+    .catch(function(error) {
+      console.error(error);
+      res.send(error);
+    });
+});
 
 
 router.post('/',function(req,res){
@@ -254,15 +324,12 @@ router.get('/navigation',require_login,function(req,res){
       } 
     }
     userModel.find({_id:{$nin:user.pendingRequests.concat(user._id,user.friendRequests,user.friends)},tags:{$in:user.tags}},function(err,matchedusers){
-      for (var y = 0;y<matchedusers.length;y++){
-        if (!(matchedusers[y] in not_friends)){
-          tag_matches.push(matchedusers[y]);
-        }
-      }
-    })
-  }).then(function(){
+      res.render("navigation",{allusers:not_friends,localusers:local_users,tagmatches:matchedusers});
+      
+    });
+  })/*.then(function(){
       res.render("navigation",{allusers:not_friends,localusers:local_users,tagmatches:tag_matches});
-    })
+    })*/
 });
 router.get('/logout', function(req, res) {
   req.session.reset();
