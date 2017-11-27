@@ -153,8 +153,8 @@ body
 }
 .popup-box .popup-messages input[type=text]{
     position:fixed;
-    bottom:0;
-    width:18%;
+    bottom:23%;
+    width:52%;
     float:right;
 }
 .message-box{

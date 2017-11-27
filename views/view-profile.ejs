@@ -22,7 +22,9 @@
                           <h6>Tags</h6> 
                           <% for (var i=0;i<viewedUser.tags.length;i++){%>
                           <ul id = 'tag-list'>
+                              <li class='tag'><%= viewedUser.tags[i] %></li>
                             </ul>
+                            <% } %>
                         <h6>Location</h6>
                         <div id="map">
                                 <img class="img-thumbnail" src = "https://maps.googleapis.com/maps/api/staticmap?center=<%= viewedUser.location %>&zoom=13&size=400x300&maptype=roadmap&key=AIzaSyBXH8DzK5WJPti9iLN8_rAJ8KF2yKCOVxs">

@@ -13,7 +13,7 @@ $('#continue-button').click(function(){
         bio:$("#bio").val(),
         tags:tagArray,
         school:$('input[name=education').val(),
-        password:$('input[name=password]').val(),
+        password:$('input[name=password]').val()
     }
     $.ajax({
         url:"/users",

@@ -4,3 +4,12 @@
 #denyRequest{
     display:none;
 }
+.tag{
+    display:inline;
+    border-radius: 20px;
+    background: #e8e8e8;
+    padding: 5px 15px;
+    display: inline;
+    margin: 3px;
+        
+}
