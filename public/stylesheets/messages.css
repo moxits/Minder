@@ -62,7 +62,7 @@ body
 
 .chat-sidebar
 {
-    width: 200px;
+    width: 250px;
     position: fixed;
     height: 100%;
     right: 0px;
@@ -72,7 +72,7 @@ body
     border: 1px solid rgba(29, 49, 91, .3);
 }
 
-.sidebar-name 
+/*.sidebar-name 
 {
     border: 2px solid black;
     padding-top:10px;
@@ -106,7 +106,7 @@ body
     height: 32px;
     vertical-align:middle;
 }
-
+*/
 .popup-box
 {
     display: none;
@@ -189,7 +189,7 @@ body
     margin: 5px 0;
     padding: 10px 20px;
     border-radius: 5px 20px 20px 5px;
-    display:table;
+    display:table;/
     float:left;
     clear:both;
 }

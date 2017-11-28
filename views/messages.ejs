@@ -6,43 +6,32 @@
         <script src="/socket.io/socket.io.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link rel = 'stylesheet' href = '/stylesheets/messages.css'>
+        <link rel='stylesheet' href='/stylesheets/profile-page.css'>
         <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
-        <!--<script src="/socket.io/socket.io.js"></script>
-        <script>
-          var socket = io({
-            query: {
-              id: '<%= user._id %>'
-            }
-          });
-        </script>-->
         <% include header %>
         <body>
                 <div class="chat-sidebar">
                 <% for(var i=0; i<friends.length; i++) {%>
+                 
                     <div class="sidebar-name">
                         <!-- Pass username and display name to register popup -->
-                        <a href="javascript:register_popup('<%= friends[i]._id %>', '<%= friends[i].firstName %> <%= friends[i].lastName %>');">
-                        <!--<img width="30" height="30" src=>-->
-                            <h3><%= friends[i].firstName %> <%= friends[i].lastName %></h3>
+                        <a href="javascript:register_popup('<%= friends[i]._id %>', '<%= friends[i].firstName %> <%= friends[i].lastName %>');"></a>
+                        <div class="media block-update-card">
+                            <a class="pull-left" href="javascript:register_popup('<%= friends[i]._id %>', '<%= friends[i].firstName %> <%= friends[i].lastName %>');">
+                              <img class="media-object update-card-MDimentions" src=<%= friends[i].photo %> alt="...">
+                            </a>
+                            <a class="pull-left" href="javascript:register_popup('<%= friends[i]._id %>', '<%= friends[i].firstName %> <%= friends[i].lastName %>');">
+                            <div class="media-body update-card-body">
+                              <h4 class="media-heading"><%= friends[i].firstName  %> <%= friends[i].lastName %></h4>                            
+                            </div>
+                            </a>
+                           </div>
                         </a>
                     </div>
                 <% } %>
                 </div>
                 <div id="msg-container"></div>
-            </body>
-        <!--
-        <div class = "side-bar">
-                <form>
-                    <input type="text" name="search" placeholder="Search for profiles">
-                </form>
-        </div>
-        <div class = 'message-container'>
-            <p>Test input</p>
-            <p>Test 2</p>
-        </div>
-        <div id = "message-box">
-            <input type='text' id='chat-input'/>
-        </div>-->
+   
         <% include footer %>
         <script src = '/javascripts/messages.js'></script>
     </body>

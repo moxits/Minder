@@ -52,7 +52,7 @@ a:hover,button:hover{
 }
 .join-box h2{
     font-size:48px;
-    margin-left:10px;
+    margin-left:130px;
     color:white;
 }
 .join-box *{
@@ -70,7 +70,7 @@ a:hover,button:hover{
     margin-bottom:-20px;
 }
 #join-box-button{
-    margin-left:80px;
+    margin-left:187px;
 }
 input[type=text], input[type = password],input[type=email] {
     width: 100%;
